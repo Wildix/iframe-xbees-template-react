@@ -2,7 +2,7 @@
 
 This template provides a minimal setup to get React working inside X-Bees App.
 
-1. Import [xBeesConnect](https://app.x-bees.com/integrations/xBeesConnect.js) (see [index.html](template-react/index.html:5)) library
+1. Import [xBeesConnect](https://app.x-bees.com/integrations/xBeesConnect.js) (see [index.html](/index.html)) library
 
 
 ## Quick Start
