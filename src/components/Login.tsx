@@ -1,4 +1,5 @@
 import {useUserContext} from "../contexts/UserContext";
+import {Box, Button, Stack, Typography} from "@mui/material";
 
 type CredentialResponse = {
     email: string;
@@ -30,15 +31,15 @@ export function Login() {
         localStorage.setItem("user", JSON.stringify(user))
     };
 
-    return <>
-        <h3>Want to connect with your X-Application? Please Sign in</h3>
-        <div className="card">
-            <button onClick={() => onSuccess(credentialsMock)}>
+    return <Stack spacing={1} alignItems="center">
+        <Typography variant="h6" align="center">Want to connect with your X-Application?<br/>Please Sign in</Typography>
+        <Box sx={{mt: 1}}>
+            <Button variant="contained" onClick={() => onSuccess(credentialsMock)}>
                 Login
-            </button>
-            <p>
-                Edit <code>src/components/Login.tsx</code> and save to test
-            </p>
-        </div>
-    </>;
+            </Button>
+        </Box>
+        <Typography variant="caption" align="center">
+          Edit <code>src/components/Login.tsx</code> and save to test
+        </Typography>
+    </Stack>;
 }

@@ -8,21 +8,6 @@
   src: url('./font/TwemojiMozilla.ttf');
 }
 
-:root {
-  --light-text-color: #000000de;
-  --dark-text-color: #ccc;
-  --font: Mulish, "apple color emoji", "Android Emoji", TwemojiMozilla, Helvetica, "Segoe UI", Arial, sans-serif !important;
-
-  max-width: 100%;
-  text-align: center;
-}
-
-#root {
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -35,10 +20,6 @@
 
 .container {
   width: 100%;
-}
-
-.card {
-  padding: 2em;
 }
 
 .read-the-docs {

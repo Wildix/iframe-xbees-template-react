@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import connectProvider from "../helpers/connectProvider";
 import Loader from "./Loader";
 import {ContactView} from "./ContactView";
+import {Box, Typography} from "@mui/material";
 
 export type Message = {
   type?: string;
@@ -28,8 +29,9 @@ export function ContextInfoView() {
   }, []);
 
   return <>
-    <h3>Current X-Bees context:</h3>
-    <div className="card">
+    <br/>
+    <Typography variant="caption" fontWeight="bold">Current x-bees context:</Typography>
+    <Box sx={{mt: 1}}>
       {(() => {
         const query: any = context;
         switch (page) {
@@ -40,9 +42,6 @@ export function ContextInfoView() {
             return <Loader />;
         }
       })()}
-      <p>
-        Edit <code>src/components/ContextInfoView.tsx</code> and save to test
-      </p>
-    </div>
+    </Box>
   </>;
 }

@@ -5,8 +5,11 @@ export function useViewPortEffect() {
   useLayoutEffect(() => {
     //notify x-bees with preferred viewport size
     void setViewport();
+
+    let timeout: ReturnType<typeof setTimeout>;
     const onResize = () => {
-      setTimeout(setViewport, 100);
+      clearTimeout(timeout);
+      timeout = setTimeout(setViewport, 100);
     }
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize)

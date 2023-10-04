@@ -8,7 +8,7 @@ export function useAuthorizationEffect() {
   useEffect(() => {
     const connect = connectProvider();
     const isAuthorized = !!user;
-
+    console.log("xBeesAuthorized", {isAuthorized, user})
     if (isAuthorized) {
       void connect?.isAuthorized?.();
     } else {

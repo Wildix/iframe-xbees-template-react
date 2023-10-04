@@ -1,7 +1,12 @@
 import {useEffect, useState} from "react";
 import Loader from "./Loader";
+import DetailsProperty from "./DetailsProperty.tsx";
+import {Box, Divider, IconButton, Stack, Typography} from "@mui/material";
+import connectProvider from "../helpers/connectProvider.ts";
+import LogoutIcon from "../assets/icons/LogoutIcon.tsx";
+import {useUserContext} from "../contexts/UserContext.tsx";
 
-type ContactQuery = { email?: string, phone?: string | number };
+type ContactQuery = { contactEmail?: string, contactPhone?: string | number };
 
 interface ContactViewProps {
   query: ContactQuery
@@ -15,7 +20,8 @@ export function ContactView({query}: ContactViewProps) {
       console.log("fetchContactData", {data});
       return {
         name: "Test User",
-        ...data,
+        email: data.contactEmail,
+        phone: data.contactPhone,
       }
     }
 
@@ -27,15 +33,28 @@ export function ContactView({query}: ContactViewProps) {
     void getContextData();
   }, []);
 
-  return <div className="card">
-    <h4>Data to show inside x-bees:</h4>
-      {contact ? <div>
-        <h4>Name: <strong>{contact.name}</strong></h4>
-        <h4>email: <strong>{contact.email}</strong></h4>
-        <h4>phone: <strong>{contact.phone}</strong></h4>
-      </div> : <Loader />}
-      <p>
+  async function startCall(phoneNumber: string): Promise<void> {
+    return await connectProvider().startCall(phoneNumber);
+  }
+
+  const [, setUser] = useUserContext();
+  const onLogoutClick = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+  };
+
+  return <Stack>
+    <Box sx={{position: "absolute", top: 10, right: 10}}><IconButton onClick={onLogoutClick}><LogoutIcon color="black"/></IconButton></Box>
+      {contact ? <>
+        <DetailsProperty title="Name" value={contact.name}/>
+        {contact.email && <DetailsProperty title="email" value={contact.email} variant="email" />}
+        {contact.phone && <DetailsProperty title="phone" value={contact.phone} variant="phone" onClick={() => startCall(contact.phone)} />}
+      </> : <Loader />}
+      <br/>
+      <Divider />
+      <br/>
+      <Typography variant="caption">
         Edit <code>src/components/ContactView.tsx</code> and save to test
-      </p>
-    </div>;
+      </Typography>
+    </Stack>;
 }

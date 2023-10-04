@@ -1,3 +1,5 @@
+import {CircularProgress, Stack} from "@mui/material";
+
 export default function Loader() {
-  return <h3>Loading ...</h3>;
+  return <Stack sx={{width: "100%"}} alignItems="center"><CircularProgress /></Stack>;
 }
