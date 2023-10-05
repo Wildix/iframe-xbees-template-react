@@ -29,12 +29,16 @@ The last version of https://github.com/Wildix/xBeesConnect library should be use
 
 ### Adding integration in development playground
 save additional test integrations for local test with browser console
-```
+```js
 localStorage.setItem('iframeIntegrationsMock', JSON.stringify([ ...<put WimIFrameIntegration objects here> ]))
+```
+show integrations in development mode
+```js
+localStorage.setItem('showDevModeIntegrations', true)
 ```
 
 clean with:
-```
+```js
 localStorage.removeItem('iframeIntegrationsMock')
 ``` 
 full example:

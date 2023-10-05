@@ -1,29 +1,26 @@
-import './App.css'
 import {initialUserState, UserContext} from "./contexts/UserContext";
-import {useEffect, useState} from "react";
+import {Suspense, useState} from "react";
 import {IntegrationConnect} from "./components/IntegrationConnect";
-import {ViewsContainer} from "./components/ViewsContainer";
-import {CssBaseline, ThemeProvider} from "@mui/material";
-import useThemeEffect from "./hooks/useThemeEffect.ts";
+import {useSearchParams} from "./hooks/useSearchParams.ts";
+import Loader from "./components/Loader.tsx";
+import { lazy } from 'react';
+
+const AppUi = lazy(() => import('./AppUi'));
 
 function App() {
   const userState = useState(initialUserState);
-  const theme = useThemeEffect();
-  useEffect(() => {
-    console.log("App - MOUNT", "xBeesAuthorized")
-    return () => console.log("App - UNMOUNT", "xBeesAuthorized")
-  }, []);
-  console.log("App - RENDER", "xBeesAuthorized", theme, userState)
+  const searchParams = useSearchParams();
+
+  const showUi = !searchParams.has('daemon');
   return (
-    <div className="container">
       <UserContext.Provider value={userState}>
         <IntegrationConnect />
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <ViewsContainer />
-        </ThemeProvider>
+        {showUi && (
+          <Suspense fallback={<Loader />}>
+            <AppUi />
+          </Suspense>
+        )}
       </UserContext.Provider>
-    </div>
   )
 }
 

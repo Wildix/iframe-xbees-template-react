@@ -6,6 +6,6 @@ export function useReadyEffect() {
     const connect = connectProvider();
 
     //notify x-bees iframe was initialized
-    void connect?.ready?.();
+    void connect.ready();
   }, []);
 }
