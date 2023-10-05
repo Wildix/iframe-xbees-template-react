@@ -8,20 +8,20 @@ export function useAuthorizationEffect() {
   useEffect(() => {
     const connect = connectProvider();
     const isAuthorized = !!user;
-    console.log("xBeesAuthorized", {isAuthorized, user})
+
     if (isAuthorized) {
       void connect?.isAuthorized?.();
     } else {
       void connect?.isNotAuthorized?.()
     }
 
-    const listener = () => {
-      if (!user) {
+    const listener = (event: any) => {
+      if (!user && !event.errorMessage) {
         void connect?.isNotAuthorized?.();
       }
     };
-    window.addEventListener('message', listener);
-    return () => window.removeEventListener('message', listener)
+    connect.onSearchContacts(listener);
+    return () => connect.off(listener)
   }, [user]);
 
   return user

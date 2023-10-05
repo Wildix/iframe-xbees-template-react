@@ -4,20 +4,22 @@ import {deepmerge} from "@mui/utils";
 import {createTheme, ThemeOptions} from "@mui/material";
 
 type ChangeThemeParams = { mode: "light" | "dark", themeOptions?: Partial<ThemeOptions> };
+
+const options = {
+  palette: {
+    background: {
+      default: "transparent"
+    }
+  }
+};
+
 export default function useThemeEffect() {
-  const [theme, setTheme] = useState(createTheme());
+  const [theme, setTheme] = useState(createTheme(options));
   useEffect(() => {
-    const connect =  connectProvider();
-    const changeTheme: (payload: ChangeThemeParams) => void = ({mode, themeOptions}) => {
-      const newTheme = createTheme(deepmerge(themeOptions, {
-        palette: {
-          background: {
-            default: "transparent"
-          }
-        }
-      }));
+    const connect = connectProvider();
+    const changeTheme: (payload: ChangeThemeParams) => void = ({themeOptions}) => {
+      const newTheme = createTheme(deepmerge(themeOptions, options));
       setTheme(newTheme);
-      console.log({mode, themeOptions})
     };
 
     connect.getTheme().then((themeResponse: any) => changeTheme(themeResponse?.payload));
