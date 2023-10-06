@@ -1,24 +1,28 @@
 {
   "name": "template-react",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "release:patch": "yarn version --patch",
+    "release:minor": "yarn version --minor",
+    "release:major": "yarn version --major",
     "lint": "eslint  --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.11",
-    "@xbees/connect": "https://github.com/Wildix/xBeesConnect.git#v1.1.0",
+    "@xbees/connect": "https://github.com/Wildix/xBeesConnect.git#v1.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.199",
+    "@types/node": "^20.8.2",
     "@types/react": "^18.2.24",
     "@types/react-dom": "^18.2.8",
     "@typescript-eslint/eslint-plugin": "^6.7.4",

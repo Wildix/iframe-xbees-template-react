@@ -8,4 +8,8 @@ export default defineConfig({
     },
     base: './',
     plugins: [react()],
+    define: {
+      APP_VERSION: JSON.stringify(process.env.npm_package_version),
+      APP_NAME: JSON.stringify(process.env.npm_package_name),
+    },
 })
