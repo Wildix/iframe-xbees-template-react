@@ -1,4 +1,4 @@
-import connectProvider from "../helpers/connectProvider.ts";
+import xBeesConnect from "../helpers/xBeesConnect.ts";
 import CopyInfoIcon from "../assets/icons/CopyInfoIcon.tsx";
 import {styled} from "@mui/material/styles";
 
@@ -9,7 +9,7 @@ const Pointer = styled("div")({
 export default function CopyInfoButton({value, ...otherProps}: {value: string; size?: number}) {
   const onClick = () => {
     if (value) {
-      connectProvider().toClipboard(value);
+      xBeesConnect().toClipboard(value);
     }
   };
 

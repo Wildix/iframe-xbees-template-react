@@ -1,4 +1,4 @@
-import connectProvider from "./connectProvider";
+import xBeesConnect from "./xBeesConnect";
 
 let cache: number;
 
@@ -8,6 +8,6 @@ export default async function setViewport( offset: number = 0): Promise<void> {
   if (height !== cache) {
     const width = document.documentElement.scrollWidth;
     cache = height;
-    await connectProvider().setViewport({ height, width });
+    await xBeesConnect().setViewport({ height, width });
   }
 }

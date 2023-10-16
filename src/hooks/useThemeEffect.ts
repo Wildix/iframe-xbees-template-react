@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import connectProvider from "../helpers/connectProvider";
+import xBeesConnect from "../helpers/xBeesConnect";
 import {deepmerge} from "@mui/utils";
 import {createTheme, ThemeOptions} from "@mui/material";
 
@@ -16,7 +16,7 @@ const options = {
 export default function useThemeEffect() {
   const [theme, setTheme] = useState(createTheme(options));
   useEffect(() => {
-    const connect = connectProvider();
+    const connect = xBeesConnect();
     const changeTheme: (payload: ChangeThemeParams) => void = ({themeOptions}) => {
       const newTheme = createTheme(deepmerge(themeOptions, options));
       setTheme(newTheme);

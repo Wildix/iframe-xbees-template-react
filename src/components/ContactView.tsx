@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import Loader from "./Loader";
 import DetailsProperty from "./DetailsProperty.tsx";
 import {Box, Divider, IconButton, Stack, Typography} from "@mui/material";
-import connectProvider from "../helpers/connectProvider.ts";
+import xBeesConnect from "../helpers/xBeesConnect.ts";
 import LogoutIcon from "../assets/icons/LogoutIcon.tsx";
 import {useUserContext} from "../contexts/UserContext.tsx";
 
@@ -34,7 +34,7 @@ export function ContactView({query}: ContactViewProps) {
   }, []);
 
   async function startCall(phoneNumber: string): Promise<void> {
-    return await connectProvider().startCall(phoneNumber);
+    return await xBeesConnect().startCall(phoneNumber);
   }
 
   const [, setUser] = useUserContext();

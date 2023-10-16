@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import connectProvider from "../helpers/connectProvider";
+import xBeesConnect from "../helpers/xBeesConnect";
 import Loader from "./Loader";
 import {ContactView} from "./ContactView";
 import {Box, Typography} from "@mui/material";
@@ -17,7 +17,7 @@ export function ContextInfoView() {
 
   useEffect(() => {
     async function getContextData() {
-      const contextMessage: Message = await connectProvider().getContext();
+      const contextMessage: Message = await xBeesConnect().getContext();
 
       if (contextMessage?.payload) {
         setPage("contact"); // show the component correspondent to the context

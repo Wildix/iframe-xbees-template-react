@@ -1,9 +1,9 @@
 import {useEffect} from "react";
-import connectProvider from "../helpers/connectProvider";
+import xBeesConnect from "../helpers/xBeesConnect";
 
 export function useReadyEffect() {
   useEffect(() => {
-    const connect = connectProvider();
+    const connect = xBeesConnect();
 
     //notify x-bees iframe was initialized
     void connect.ready();
