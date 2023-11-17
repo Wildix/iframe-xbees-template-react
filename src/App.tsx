@@ -1,25 +1,25 @@
-import {initialUserState, UserContext} from "./contexts/UserContext";
-import {Suspense, useState} from "react";
-import {IntegrationConnect} from "./components/IntegrationConnect";
-import Loader from "./components/Loader.tsx";
-import { lazy } from 'react';
-import xBeesConnect from "@xbees/connect";
+import {initialUserState, UserContext} from './contexts/UserContext';
+import {lazy, Suspense, useState} from 'react';
+import Loader from './components/Loader';
+import Client from '@wildix/xbees-connect';
+import {IntegrationConnect} from './components/IntegrationConnect';
 
 const AppUi = lazy(() => import('./AppUi'));
 
-function App() {
+const App = () => {
   const userState = useState(initialUserState);
 
-  const showUi = xBeesConnect().showsUi();
+  const showUi = Client.getInstance().showsUi();
+
   return (
-      <UserContext.Provider value={userState}>
-        <IntegrationConnect />
-        {showUi && (
-          <Suspense fallback={<Loader />}>
-            <AppUi />
-          </Suspense>
-        )}
-      </UserContext.Provider>
+    <UserContext.Provider value={userState}>
+      <IntegrationConnect />
+      {showUi ? (
+        <Suspense fallback={<Loader />}>
+          <AppUi />
+        </Suspense>
+) : null}
+    </UserContext.Provider>
   )
 }
 

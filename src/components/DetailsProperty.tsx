@@ -1,6 +1,6 @@
 import Link from '@mui/material/Link';
 import {styled} from '@mui/material/styles';
-import CopyInfoButton from "./CopyInfoButton.tsx";
+import {CopyInfoButton} from '@wildix/xbees-connect-react';
 
 const PropertyRoot = styled('div')({
   display: 'flex',
@@ -8,10 +8,10 @@ const PropertyRoot = styled('div')({
   width: '100%',
   padding: '8px 0',
   alignItems: 'center',
-  [' .MuiSvgIcon-root']: {
+  ' .MuiSvgIcon-root': {
     display: 'none',
   },
-  ['&:hover .MuiSvgIcon-root']: {
+  '&:hover .MuiSvgIcon-root': {
     display: 'inherit',
   },
 });
@@ -46,7 +46,7 @@ const PropertyValueLink = styled(Link)(({theme}) => ({
   overflow: 'hidden',
   whiteSpace: 'nowrap',
   textOverflow: 'ellipsis',
-  "&:hover": {
+  '&:hover': {
     color: theme.palette.primary.main,
   }
 }));
@@ -56,11 +56,12 @@ interface ContactPropertyProps {
   value: string;
   variant?: 'email' | 'phone';
   onClick?: () => void;
-  "data-qa"?: string;
+  'data-qa'?: string;
 }
 
-export default function DetailsProperty({"data-qa": dataQa, title, value, variant, onClick}: ContactPropertyProps) {
+export default function DetailsProperty({'data-qa': dataQa, title, value, variant, onClick}: ContactPropertyProps) {
   let valueComponent;
+
   switch (variant) {
     case 'email': {
       valueComponent = (
@@ -70,12 +71,14 @@ export default function DetailsProperty({"data-qa": dataQa, title, value, varian
           underline="none"
           target="_blank"
           rel="noopener"
-          onClick={onClick}>
+          onClick={onClick}
+        >
           {value}
         </PropertyValueLink>
       );
       break;
     }
+
     case 'phone': {
       valueComponent = (
         <PropertyValueLink data-qa={`${dataQa}-value`} underline="none" onClick={onClick}>
@@ -84,6 +87,7 @@ export default function DetailsProperty({"data-qa": dataQa, title, value, varian
       );
       break;
     }
+
     default: {
       valueComponent = (
         <PropertyValueText data-qa={`${dataQa}-value`}>
@@ -95,7 +99,10 @@ export default function DetailsProperty({"data-qa": dataQa, title, value, varian
 
   return (
     <PropertyRoot>
-      <PropertyTitle data-qa={`${dataQa}-label`}>{title}:</PropertyTitle>
+      <PropertyTitle data-qa={`${dataQa}-label`}>
+        {title}
+        :
+      </PropertyTitle>
       <PropertyHoverObserver>
         {valueComponent}
         <CopyInfoButton value={value} size={20} />

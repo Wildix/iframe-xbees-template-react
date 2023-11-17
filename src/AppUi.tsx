@@ -1,10 +1,9 @@
 import './App.css'
-import {ViewsContainer} from "./components/ViewsContainer";
-import {CssBaseline, ThemeProvider} from "@mui/material";
-import useThemeEffect from "./hooks/useThemeEffect.ts";
-import {useViewPortEffect} from "./hooks/useViewPortEffect.ts";
+import {ViewsContainer} from './components/ViewsContainer';
+import {CssBaseline, ThemeProvider} from '@mui/material';
+import {useThemeEffect, useViewPortEffect} from '@wildix/xbees-connect-react';
 
-function AppUi() {
+const AppUi = () => {
   const theme = useThemeEffect();
 
   useViewPortEffect();

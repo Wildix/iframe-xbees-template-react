@@ -1,10 +1,8 @@
-import {useAuthorizationEffect} from "../hooks/useAuthorizationEffect";
-import {useReadyEffect} from "../hooks/useReadyEffect";
-import useFetchContactsByQuery from "../hooks/useFetchContactsByQuery.ts";
+import {useAuthorizationEffect} from '../hooks/useAuthorizationEffect';
+import useFetchContactsByQuery from '../hooks/useFetchContactsByQuery';
+import {useReadyEffect} from '@wildix/xbees-connect-react';
 
-// import useThemeEffect from "../hooks/useThemeEffect.ts";
-
-export function IntegrationConnect() {
+export const IntegrationConnect = () => {
   useReadyEffect();
 
   useAuthorizationEffect();

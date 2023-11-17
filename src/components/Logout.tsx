@@ -1,14 +1,21 @@
-import {useUserContext} from "../contexts/UserContext";
+import {useUserContext} from '../contexts/UserContext';
 
-export function Logout() {
+export const Logout = () => {
   const [user, setUser] = useUserContext();
+
   const onClick = () => {
     setUser(null);
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
   };
 
-  return <div>
-    <h3>You've logged in as <i>{`${user.name} <${user.email}>`}</i>. Your X-Application integration is active</h3>
-    <button onClick={onClick}>Log out</button>
-  </div>;
+  return (
+    <div>
+      <h3>
+        You have logged in as
+        <i>{`${user.name} <${user.email}>`}</i>
+        . Your X-Application integration is active
+      </h3>
+      <button type="button" onClick={onClick}>Log out</button>
+    </div>
+);
 }

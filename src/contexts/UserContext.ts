@@ -1,6 +1,6 @@
-import {createContext, useContext} from "react";
+import {createContext, useContext} from 'react';
 
-const item = localStorage.getItem("user");
+const item = localStorage.getItem('user');
 export const initialUserState = item && JSON.parse(item);
 
 export const UserContext = createContext(initialUserState);
