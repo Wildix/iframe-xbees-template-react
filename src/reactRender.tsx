@@ -1,9 +1,9 @@
-import ReactLib from 'react';
-import ReactDOM from 'react-dom/client';
+import {createElement} from 'react';
+import {createRoot} from 'react-dom/client';
 import Root from './Root';
 
-export default function renderReact() {
+export function renderReact() {
   const rootContainer = document.getElementById('root')!;
-  const reactRoot = ReactDOM.createRoot(rootContainer);
-  reactRoot.render(ReactLib.createElement(Root))
+  const reactRoot = createRoot(rootContainer);
+  reactRoot.render(createElement(Root))
 }

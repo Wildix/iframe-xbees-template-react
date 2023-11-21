@@ -1,6 +1,6 @@
 import {useUserContext} from '../contexts/UserContext';
 
-export const Logout = () => {
+export function Logout() {
   const [user, setUser] = useUserContext();
 
   const onClick = () => {
@@ -17,5 +17,5 @@ export const Logout = () => {
       </h3>
       <button type="button" onClick={onClick}>Log out</button>
     </div>
-);
+  );
 }

@@ -3,7 +3,7 @@ import {ViewsContainer} from './components/ViewsContainer';
 import {CssBaseline, ThemeProvider} from '@mui/material';
 import {useThemeEffect, useViewPortEffect} from '@wildix/xbees-connect-react';
 
-const AppUi = () => {
+function AppUi() {
   const theme = useThemeEffect();
 
   useViewPortEffect();

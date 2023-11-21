@@ -6,7 +6,7 @@ import {IntegrationConnect} from './components/IntegrationConnect';
 
 const AppUi = lazy(() => import('./AppUi'));
 
-const App = () => {
+function App() {
   const userState = useState(initialUserState);
 
   const showUi = Client.getInstance().showsUi();
@@ -18,7 +18,7 @@ const App = () => {
         <Suspense fallback={<Loader />}>
           <AppUi />
         </Suspense>
-) : null}
+      ) : null}
     </UserContext.Provider>
   )
 }

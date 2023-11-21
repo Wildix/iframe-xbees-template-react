@@ -4,7 +4,7 @@ import {ContextInfoView} from './ContextInfoView';
 import {Logout} from './Logout';
 import {useSearchParams} from '@wildix/xbees-connect-react';
 
-export const ViewsContainer = () => {
+export function ViewsContainer() {
   const [user] = useUserContext();
 
   const searchParams = useSearchParams();

@@ -14,13 +14,13 @@ interface ContactViewProps {
   query: ContactQuery
 }
 
-export const ContactView = ({query}: ContactViewProps) => {
+export function ContactView({query}: ContactViewProps) {
   const [contact, setContact] = useState<Contact | null>(null);
 
   useEffect(() => {
     async function getContextData() {
-        const newVar = await fetchContactData(query);
-        setContact(newVar);
+      const newVar = await fetchContactData(query);
+      setContact(newVar);
     }
 
     void getContextData();
@@ -39,14 +39,27 @@ export const ContactView = ({query}: ContactViewProps) => {
 
   return (
     <Stack>
-      <Box sx={{position: 'absolute', top: 10, right: 10}}><IconButton onClick={onLogoutClick}><LogoutIcon color="black" /></IconButton></Box>
+      <Box sx={{position: 'absolute', top: 10, right: 10}}>
+        <IconButton onClick={onLogoutClick}>
+          <LogoutIcon
+            color="black"
+          />
+        </IconButton>
+      </Box>
       {contact ? (
         <>
           <DetailsProperty title="Name" value={contact.name} />
           {contact.email ? <DetailsProperty title="email" value={contact.email} variant="email" /> : null}
-          {contact.phone ? <DetailsProperty title="phone" value={contact.phone} variant="phone" onClick={() => startCall(contact.phone!)} /> : null}
+          {contact.phone ? (
+            <DetailsProperty
+              title="phone"
+              value={contact.phone}
+              variant="phone"
+              onClick={() => startCall(contact.phone!)}
+            />
+      ) : null}
         </>
-) : <Loader />}
+      ) : <Loader />}
       <br />
       <Divider />
       <br />
@@ -58,5 +71,5 @@ export const ContactView = ({query}: ContactViewProps) => {
         and save to test
       </Typography>
     </Stack>
-);
+  );
 }

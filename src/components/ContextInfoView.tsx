@@ -11,7 +11,7 @@ export type Message = {
   payload?: unknown;
 }
 
-export const ContextInfoView = () => {
+export function ContextInfoView() {
   const [page, setPage] = useState('loading');
   const [context, setContext] = useState<ContactQuery | null>(null);
 
@@ -34,17 +34,17 @@ export const ContextInfoView = () => {
       <Typography variant="caption" fontWeight="bold">Current x-bees context:</Typography>
       <Box sx={{mt: 1}}>
         {(() => {
-        const query = context;
+          const query = context;
 
-        switch (page) {
-          case 'contact':
-            return <ContactView query={query!} />;
-          case 'loading':
-          default:
-            return <Loader />;
-        }
-      })()}
+          switch (page) {
+            case 'contact':
+              return <ContactView query={query!} />;
+            case 'loading':
+            default:
+              return <Loader />;
+          }
+        })()}
       </Box>
     </>
-);
+  );
 }

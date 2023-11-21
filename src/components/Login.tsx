@@ -23,34 +23,34 @@ function getUserFromCredentials(credentialResponse: CredentialResponse) {
     return credentialResponse ? userMock : null;
 }
 
-export const Login = () => {
-    const [, setUser] = useUserContext();
+export function Login() {
+  const [, setUser] = useUserContext();
 
-    const onSuccess = (credentialResponse: CredentialResponse) => {
-        const user = getUserFromCredentials(credentialResponse)
-        setUser(user);
-        localStorage.setItem('user', JSON.stringify(user))
-    };
+  const onSuccess = (credentialResponse: CredentialResponse) => {
+    const user = getUserFromCredentials(credentialResponse)
+    setUser(user);
+    localStorage.setItem('user', JSON.stringify(user))
+  };
 
-    return (
-      <Stack spacing={1} alignItems="center">
-        <Typography variant="h6" align="center">
-          Want to connect with your X-Application?
-          <br />
-          Please Sign in
-        </Typography>
-        <Box sx={{mt: 1}}>
-          <Button variant="contained" onClick={() => onSuccess(credentialsMock)}>
-            Login
-          </Button>
-        </Box>
-        <Typography variant="caption" align="center">
-          Edit 
-          {' '}
-          <code>src/components/Login.tsx</code>
-          {' '}
-          and save to test
-        </Typography>
-      </Stack>
-);
+  return (
+    <Stack spacing={1} alignItems="center">
+      <Typography variant="h6" align="center">
+        Want to connect with your X-Application?
+        <br />
+        Please Sign in
+      </Typography>
+      <Box sx={{mt: 1}}>
+        <Button variant="contained" onClick={() => onSuccess(credentialsMock)}>
+          Login
+        </Button>
+      </Box>
+      <Typography variant="caption" align="center">
+        Edit
+        {' '}
+        <code>src/components/Login.tsx</code>
+        {' '}
+        and save to test
+      </Typography>
+    </Stack>
+  );
 }

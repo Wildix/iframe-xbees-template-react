@@ -16,7 +16,7 @@ export default function useFetchContactsByQuery() {
     return connect.onSuggestContacts(async (query, resolve, reject) => {
       try {
         const responseResult = await suggestContacts(query)
-        resolve(responseResult!)
+        resolve(responseResult)
       } catch (error) {
         reject(`${error}`)
       }
