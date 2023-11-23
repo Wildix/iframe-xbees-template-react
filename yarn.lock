@@ -953,10 +953,10 @@
   resolved "https://registry.yarnpkg.com/@wildix/xbees-connect-react/-/xbees-connect-react-1.0.4.tgz#1c2cc82a7c7e2271c9da9336e944f2a6ceba1ed5"
   integrity sha512-R0a+vZpFA7BB8A9u/aXjj+HhYruTvkIP8O9w3BYHvQvq1zIzM5GcX7cgwIG3n4265vQ1pRt3La/VOT/8y12oiw==
 
-"@wildix/xbees-connect@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@wildix/xbees-connect/-/xbees-connect-1.0.4.tgz#bbf429a27e4aac0245a9b4d165dd339a82a17f08"
-  integrity sha512-Zpa37F5bxY4uiHoNAAAWUTmE410f5eB3oJtNM/UI6POF6gnXwJhwiGnmfKgO7wG4GI4gYYn3ZPceYQiQqNwQtg==
+"@wildix/xbees-connect@^1.0.6-alpha.0":
+  version "1.0.6-alpha.0"
+  resolved "https://registry.yarnpkg.com/@wildix/xbees-connect/-/xbees-connect-1.0.6-alpha.0.tgz#b1b338b2fdcdca3e64e11004140902ef16606001"
+  integrity sha512-TZW5hGZQJ8BnbyCzR3Psp33s55ZceIf+8Zr8Q24m1rK09Zcvf9Ztr5oM4TaMI/I909OxxJnLDl1EOVjC4t3RUw==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"

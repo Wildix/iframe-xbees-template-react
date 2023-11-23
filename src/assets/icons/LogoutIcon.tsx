@@ -1,4 +1,4 @@
-import { SvgIcon } from "@mui/material";
+import { SvgIcon } from '@mui/material';
 
 export default function LogoutIcon({ size = 20, color = 'rgb(22, 123, 200)', ...restProps }) {
   return (
