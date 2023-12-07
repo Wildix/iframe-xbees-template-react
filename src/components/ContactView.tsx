@@ -1,30 +1,16 @@
-import {useEffect, useState} from 'react';
-import Loader from './Loader';
 import DetailsProperty from './DetailsProperty';
-import {Box, Divider, IconButton, Stack, Typography} from '@mui/material';
+import {Box, Button, Divider, IconButton, Stack, Typography} from '@mui/material';
 import LogoutIcon from '../assets/icons/LogoutIcon';
 import {useUserContext} from '../contexts/UserContext';
 import Client from '@wildix/xbees-connect';
-import {fetchContactData} from '../services/mocks';
-import {Contact} from '@wildix/xbees-connect/dist-types/src/types';
-
-export type ContactQuery = { contactEmail?: string, contactPhone?: string | number };
+import {Contact} from '@wildix/xbees-connect/dist-types/types';
 
 interface ContactViewProps {
-  query: ContactQuery
+    contact: Contact,
+    edit: () => void
 }
 
-export function ContactView({query}: ContactViewProps) {
-  const [contact, setContact] = useState<Contact | null>(null);
-
-  useEffect(() => {
-    async function getContextData() {
-      const newVar = await fetchContactData(query);
-      setContact(newVar);
-    }
-
-    void getContextData();
-  }, [query]);
+export function ContactView({contact, edit}: ContactViewProps) {
 
   function startCall(phoneNumber: string) {
     return Client.getInstance().startCall(phoneNumber);
@@ -46,20 +32,18 @@ export function ContactView({query}: ContactViewProps) {
           />
         </IconButton>
       </Box>
-      {contact ? (
-        <>
-          <DetailsProperty title="Name" value={contact.name} />
-          {contact.email ? <DetailsProperty title="email" value={contact.email} variant="email" /> : null}
-          {contact.phone ? (
-            <DetailsProperty
-              title="phone"
-              value={contact.phone}
-              variant="phone"
-              onClick={() => startCall(contact.phone!)}
-            />
-      ) : null}
-        </>
-      ) : <Loader />}
+      <DetailsProperty title="Name" value={contact.name} />
+      {contact.email ? <DetailsProperty title="email" value={contact.email} variant="email" /> : null}
+      {contact.phone ? (
+        <DetailsProperty
+          title="phone"
+          value={contact.phone}
+          variant="phone"
+          onClick={() => startCall(contact.phone!)}
+        />
+) : null}
+      <br />
+      <Button onClick={edit}>Edit contact</Button>
       <br />
       <Divider />
       <br />

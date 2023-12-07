@@ -2,6 +2,7 @@
   "extends": "@wildix/eslint-config-style-guide/tsconfig.browser.json",
   "compilerOptions": {
   },
-  "include": ["src", "vite.config.ts"],
+  "exclude": ["src/controllers"],
+  "include": ["src", "vite.config.ts", "parent"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

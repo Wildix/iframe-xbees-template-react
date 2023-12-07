@@ -1,25 +1,28 @@
-import {initialUserState, UserContext} from './contexts/UserContext';
-import {lazy, Suspense, useState} from 'react';
-import Loader from './components/Loader';
-import Client from '@wildix/xbees-connect';
-import {IntegrationConnect} from './components/IntegrationConnect';
-
-const AppUi = lazy(() => import('./AppUi'));
+import './App.css'
+import {ViewsContainer} from './components/ViewsContainer';
+import {CssBaseline, ThemeProvider} from '@mui/material';
+import {useThemeEffect, useViewPortEffect} from '@wildix/xbees-connect-react';
+import {UserContext} from './contexts/UserContext';
+import Auth from './auth';
+import {useMemo, useState} from 'react';
 
 function App() {
-  const userState = useState(initialUserState);
+  const [user, setUser] = useState(Auth.getInstance().user);
+  const theme = useThemeEffect();
 
-  const showUi = Client.getInstance().showsUi();
+  useViewPortEffect();
+
+  const userContext = useMemo(() => [user, setUser], [user]);
 
   return (
-    <UserContext.Provider value={userState}>
-      <IntegrationConnect />
-      {showUi ? (
-        <Suspense fallback={<Loader />}>
-          <AppUi />
-        </Suspense>
-      ) : null}
-    </UserContext.Provider>
+    <div className="container">
+      <UserContext.Provider value={userContext}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <ViewsContainer />
+        </ThemeProvider>
+      </UserContext.Provider>
+    </div>
   )
 }
 

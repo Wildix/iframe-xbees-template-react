@@ -3,19 +3,7 @@ import Client from '@wildix/xbees-connect';
 import {useUserContext} from '../contexts/UserContext';
 
 export function useAuthorizationEffect() {
-  const [user, setUser] = useUserContext();
-
-  useEffect(() => {
-    const listener = () => {
-      const item = localStorage.getItem('user');
-      const itemState = item && JSON.parse(item);
-      setUser(itemState);
-    };
-
-    addEventListener('storage', listener);
-
-    return () => removeEventListener('storage', listener);
-  }, [setUser]);
+  const [user] = useUserContext();
 
   useEffect(() => {
     const connect = Client.getInstance();

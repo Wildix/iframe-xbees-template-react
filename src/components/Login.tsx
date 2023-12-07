@@ -1,13 +1,10 @@
 import {useUserContext} from '../contexts/UserContext';
 import {Box, Button, Stack, Typography} from '@mui/material';
+import {User} from '../types';
+import Auth from '../auth';
 
 type CredentialResponse = {
     email: string;
-}
-
-type User = {
-    name: string,
-    email: string,
 }
 
 const credentialsMock: CredentialResponse = {
@@ -29,6 +26,7 @@ export function Login() {
   const onSuccess = (credentialResponse: CredentialResponse) => {
     const user = getUserFromCredentials(credentialResponse)
     setUser(user);
+    Auth.getInstance().user = user;
     localStorage.setItem('user', JSON.stringify(user))
   };
 
