@@ -74,6 +74,12 @@ addEventListener('storage', (storageEvent) => {
     });
 
     Client.getInstance().ready();
+
+    if (!Auth.getInstance().isAuthorized()) {
+      Client.getInstance().isNotAuthorized()
+    } else {
+      Client.getInstance().isAuthorized()
+    }
 })();
 
 
