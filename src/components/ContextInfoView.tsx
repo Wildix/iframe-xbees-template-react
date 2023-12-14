@@ -19,6 +19,7 @@ export function ContextInfoView() {
   const [page, setPage] = useState('loading');
   const [context, setContext] = useState<ContactQuery | null>(null);
   const [contact, setContact] = useState<Contact | null>(null);
+  const [isUpdated, setIsUpdated] = useState<boolean>(false);
 
   useEffect(() => {
     async function getContextData() {
@@ -52,6 +53,13 @@ export function ContextInfoView() {
     }
   }, [context]);
 
+  useEffect(() => {
+    if (isUpdated && page === 'contact' && contact && context) {
+      void Client.getInstance().contactUpdated(context, contact);
+      setIsUpdated(false)
+    }
+  }, [page, contact, isUpdated, context]);
+
   return (
     <>
       <br />
@@ -70,7 +78,12 @@ export function ContextInfoView() {
                 <ContactEdit
                   query={query!}
                   contact={contact}
-                  onCreate={() => setContext({...context!})}
+                  onCreate={() => {
+                    setContext({...context!});
+                    setPage('loading');
+                    setIsUpdated(true);
+                    // TODO show current user email. logout if it changes
+                  }}
                 />
               );
             case 'loading':

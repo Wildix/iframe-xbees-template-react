@@ -1,16 +1,21 @@
 import {User} from '../types';
+import Client from '@wildix/xbees-connect';
 
 function getUserFromLocalStorage() {
     const item = localStorage.getItem('user');
 
-    return item ? JSON.parse(item) as User : null;
+  const userFromLocalStorage = item ? JSON.parse(item) as User : null;
+
+  const currentUserEmail = Client.getInstance().getUserEmail();
+
+  return userFromLocalStorage?.email === currentUserEmail ? userFromLocalStorage : null;
 }
 
 export default class Auth {
     private static instance: unknown = null;
 
     static refreshFromStorage() {
-        Auth.getInstance().user = getUserFromLocalStorage();
+      Auth.getInstance().user = getUserFromLocalStorage();
     }
 
     static getInstance(): Auth {

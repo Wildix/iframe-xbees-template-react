@@ -2,22 +2,24 @@ import {useUserContext} from '../contexts/UserContext';
 import {Box, Button, Stack, Typography} from '@mui/material';
 import {User} from '../types';
 import Auth from '../auth';
+import Client from '@wildix/xbees-connect';
 
 type CredentialResponse = {
     email: string;
 }
 
 const credentialsMock: CredentialResponse = {
-    email: 'john.doe@test.cc'
+    email: Client.getInstance().getUserEmail()
 }
 
-const userMock: User = {
-    name: 'John Doe',
-    email: 'john.doe@test.cc'
-}
+function getUserFromCredentials(credentialResponse: CredentialResponse): User {
+  const {email} = credentialResponse
+  const name = email.split('@')[0] ?? email;
 
-function getUserFromCredentials(credentialResponse: CredentialResponse) {
-    return credentialResponse ? userMock : null;
+  return {
+    name,
+    email
+  };
 }
 
 export function Login() {
