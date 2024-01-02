@@ -2,9 +2,7 @@ import {User} from '../types';
 import Client from '@wildix/xbees-connect';
 
 function getUserFromLocalStorage() {
-    const item = localStorage.getItem('user');
-
-  const userFromLocalStorage = item ? JSON.parse(item) as User : null;
+  const userFromLocalStorage: User | null = Client.getInstance().getFromStorage('user');
 
   const currentUserEmail = Client.getInstance().getUserEmail();
 

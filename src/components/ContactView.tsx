@@ -20,7 +20,7 @@ export function ContactView({contact, edit}: ContactViewProps) {
 
   const onLogoutClick = () => {
     setUser(null);
-    localStorage.removeItem('user');
+    Client.getInstance().deleteFromStorage('user');
   };
 
   return (

@@ -5,6 +5,7 @@ import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
 import {useViewPortEffect} from '@wildix/xbees-connect-react';
 
 import {addContact} from '../api/addContact';
+import Client from '@wildix/xbees-connect';
 
 interface ContactEditProps {
     query: ContactQuery,
@@ -17,8 +18,8 @@ export function ContactEdit({query, contact, onCreate}: ContactEditProps) {
   const [, setUser] = useUserContext();
 
   const onLogoutClick = () => {
-      setUser(null);
-      localStorage.removeItem('user');
+    setUser(null);
+    Client.getInstance().deleteFromStorage('user');
   };
 
   useViewPortEffect();

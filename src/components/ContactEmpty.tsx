@@ -2,6 +2,7 @@ import {Box, Button, Divider, IconButton, Stack, Typography} from '@mui/material
 import LogoutIcon from '../assets/icons/LogoutIcon';
 import {useUserContext} from '../contexts/UserContext';
 import {ContactQuery} from '@wildix/xbees-connect/dist-types/types';
+import Client from '@wildix/xbees-connect';
 
 interface ContactViewProps {
     query: ContactQuery,
@@ -13,8 +14,8 @@ export function ContactEmpty({query, create}: ContactViewProps) {
   const [, setUser] = useUserContext();
 
   const onLogoutClick = () => {
-      setUser(null);
-      localStorage.removeItem('user');
+    setUser(null);
+    Client.getInstance().deleteFromStorage('user');
   };
 
   return (

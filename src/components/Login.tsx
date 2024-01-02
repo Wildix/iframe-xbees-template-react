@@ -29,7 +29,7 @@ export function Login() {
     const user = getUserFromCredentials(credentialResponse)
     setUser(user);
     Auth.getInstance().user = user;
-    localStorage.setItem('user', JSON.stringify(user))
+    Client.getInstance().saveToStorage('user', user);
   };
 
   return (

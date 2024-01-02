@@ -14,7 +14,7 @@ async function lazyUiRenderer() {
     }
 }
 
-addEventListener('storage', (storageEvent) => {
+Client.getInstance().onStorage((storageEvent) => {
     if (storageEvent.key === 'user') {
         Auth.refreshFromStorage()
     }
