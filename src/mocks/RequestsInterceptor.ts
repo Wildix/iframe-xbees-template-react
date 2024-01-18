@@ -47,9 +47,9 @@ async function addContactHandler(options: RequestInit) {
       };
 
       // @ts-expect-error contact
-      ContactsRepository.getInstance().addOrUpdate(contact);
+      const id = ContactsRepository.getInstance().addOrUpdate(contact);
 
-      return Promise.resolve(new Response(JSON.stringify({ status: 'ok' }), {
+      return Promise.resolve(new Response(JSON.stringify({ status: 'ok', id }), {
         status: 201,
         headers: {
           'Content-Type': 'application/json',

@@ -6,17 +6,15 @@ import Client from '@wildix/xbees-connect';
 import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
 import {searchContactsBy} from '../api/searchContactsBy';
 import {ContactEmpty} from './ContactEmpty';
-import { ContactEdit } from './ContactEdit';
-
-export type Message = {
-  type?: string;
-  message?: string;
-  errorMessage?: string;
-  payload?: unknown;
-}
+import {ContactEdit} from './ContactEdit';
+import {Link as RouterLink, Navigate, Route, Routes, useNavigate} from 'react-router-dom';
+import {Paths} from './ViewsContainer';
+import {useUserContext} from '../contexts/UserContext';
+import Link from '@mui/material/Link';
 
 export function ContextInfoView() {
-  const [page, setPage] = useState('loading');
+  const navigate = useNavigate();
+  const [user] = useUserContext();
   const [context, setContext] = useState<ContactQuery | null>(null);
   const [contact, setContact] = useState<Contact | null>(null);
   const [isUpdated, setIsUpdated] = useState<boolean>(false);
@@ -26,7 +24,6 @@ export function ContextInfoView() {
       const contextMessage = await Client.getInstance().getContext();
 
       if (contextMessage?.payload) {
-        setPage('loading'); // show the component correspondent to the context
         setContext(contextMessage.payload.contact);
       }
     }
@@ -34,64 +31,67 @@ export function ContextInfoView() {
     void getContextData();
   }, []);
 
-  async function getContextData(query: ContactQuery) {
-    setPage('loading')
-    let resultContact: Contact | null = null;
-
-    try {
-      const results = await searchContactsBy(query);
-      resultContact = results?.[0] ?? null;
-      setContact(resultContact);
-    } finally {
-      setPage(!resultContact ? 'noContact' : 'contact')
-    }
-  }
-
   useEffect(() => {
+    async function getContextData(query: ContactQuery) {
+      let resultContact: Contact | null = null;
+
+      try {
+        const results = await searchContactsBy(query);
+        resultContact = results?.[0] ?? null;
+        setContact(resultContact);
+        setIsUpdated(false);
+
+        if (resultContact) {
+          void Client.getInstance().contactUpdated(query, resultContact);
+        }
+      } finally {
+        navigate(!resultContact ? Paths.no_matches_view : `${resultContact.id}`)
+      }
+    }
+
     if (context) {
       void getContextData(context);
     }
-  }, [context]);
+  }, [context, isUpdated]);
 
   useEffect(() => {
-    if (isUpdated && page === 'contact' && contact && context) {
-      void Client.getInstance().contactUpdated(context, contact);
-      setIsUpdated(false)
+    if (contact) {
+      navigate(contact.id)
     }
-  }, [page, contact, isUpdated, context]);
+  }, [contact]);
 
   return (
     <>
       <br />
+      <Typography variant="subtitle1">welcome</Typography>
+      <Typography variant="body2">{`${user!.name} (${user!.email})`}</Typography>
+      <br />
       <Typography variant="caption" fontWeight="bold">Current x-bees context:</Typography>
       <Box sx={{mt: 1}}>
-        {(() => {
-          const query = context;
-
-          switch (page) {
-            case 'contact':
-              return <ContactView contact={contact!} edit={() => setPage('contactEdit')} />;
-            case 'noContact':
-              return <ContactEmpty query={query!} create={() => setPage('contactEdit')} />;
-            case 'contactEdit':
-              return (
-                <ContactEdit
-                  query={query!}
-                  contact={contact}
-                  onCreate={() => {
-                    setContext({...context!});
-                    setPage('loading');
-                    setIsUpdated(true);
-                    // TODO show current user email. logout if it changes
-                  }}
-                />
-              );
-            case 'loading':
-            default:
-              return <Loader />;
-          }
-        })()}
+        <Routes>
+          <Route index element={<Navigate to="loading" replace />} />
+          <Route path=":id">
+            <Route index element={<ContactView contact={contact!} edit={() => navigate(Paths.create_contact)} />} />
+          </Route>
+          <Route
+            path={Paths.create_contact}
+            element={(
+              <ContactEdit
+                query={context!}
+                contact={contact}
+                onCreate={() => {
+                  setContext({...context!});
+                  navigate('loading');
+                  setIsUpdated(true);
+                }}
+              />
+            )}
+          />
+          <Route path={Paths.no_matches_view} element={<ContactEmpty query={context!} create={() => navigate(Paths.create_contact)} />} />
+          <Route path="loading" element={<Loader />} />
+        </Routes>
       </Box>
+      <Link variant="subtitle1" component={RouterLink} to={`/${Paths.toasts_view}`}>Test Toasts</Link>
     </>
   );
 }

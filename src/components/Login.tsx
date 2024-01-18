@@ -3,13 +3,15 @@ import {Box, Button, Stack, Typography} from '@mui/material';
 import {User} from '../types';
 import Auth from '../auth';
 import Client from '@wildix/xbees-connect';
+import {useNavigate} from 'react-router-dom';
+import {PublicPaths} from './ViewsContainer';
 
 type CredentialResponse = {
     email: string;
 }
 
 const credentialsMock: CredentialResponse = {
-    email: Client.getInstance().getUserEmail()
+    email: Client.getInstance().getUserEmail() ?? 'no@email'
 }
 
 function getUserFromCredentials(credentialResponse: CredentialResponse): User {
@@ -24,12 +26,14 @@ function getUserFromCredentials(credentialResponse: CredentialResponse): User {
 
 export function Login() {
   const [, setUser] = useUserContext();
+  const navigate = useNavigate();
 
   const onSuccess = (credentialResponse: CredentialResponse) => {
     const user = getUserFromCredentials(credentialResponse)
     setUser(user);
     Auth.getInstance().user = user;
     Client.getInstance().saveToStorage('user', user);
+    navigate(PublicPaths.signInAwaiting);
   };
 
   return (

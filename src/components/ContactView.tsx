@@ -1,9 +1,8 @@
 import DetailsProperty from './DetailsProperty';
-import {Box, Button, Divider, IconButton, Stack, Typography} from '@mui/material';
-import LogoutIcon from '../assets/icons/LogoutIcon';
-import {useUserContext} from '../contexts/UserContext';
+import {Button, Divider, Stack, Typography} from '@mui/material';
 import Client from '@wildix/xbees-connect';
 import {Contact} from '@wildix/xbees-connect/dist-types/types';
+import {LogoutButton} from './LogoutButton';
 
 interface ContactViewProps {
     contact: Contact,
@@ -11,27 +10,13 @@ interface ContactViewProps {
 }
 
 export function ContactView({contact, edit}: ContactViewProps) {
-
   function startCall(phoneNumber: string) {
     return Client.getInstance().startCall(phoneNumber);
   }
 
-  const [, setUser] = useUserContext();
-
-  const onLogoutClick = () => {
-    setUser(null);
-    Client.getInstance().deleteFromStorage('user');
-  };
-
   return (
     <Stack>
-      <Box sx={{position: 'absolute', top: 10, right: 10}}>
-        <IconButton onClick={onLogoutClick}>
-          <LogoutIcon
-            color="black"
-          />
-        </IconButton>
-      </Box>
+      <LogoutButton />
       <DetailsProperty title="Name" value={contact.name} />
       {contact.email ? <DetailsProperty title="email" value={contact.email} variant="email" /> : null}
       {contact.phone ? (

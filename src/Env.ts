@@ -13,6 +13,10 @@ class Env {
 
     ContactsRepository.getInstance().refreshFromStorage();
   }
+
+  static isDev() {
+    return import.meta.env.DEV
+  }
 }
 
 export default Env;

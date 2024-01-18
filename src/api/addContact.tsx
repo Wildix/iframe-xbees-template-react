@@ -19,4 +19,6 @@ export async function addContact() {
     const data = await response.json();
 
     console.info('Success', data)
+
+    return data;
 }

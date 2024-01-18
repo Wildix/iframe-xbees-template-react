@@ -43,14 +43,19 @@ export default class ContactsRepository {
     public addOrUpdate(contact: Contact) {
         const find = this.contacts.find((savedContact) => savedContact.email === contact.email);
 
+        let id = `id${new Date().getTime()}`;
+
         if (!find) {
-            this.contacts.push({...contact});
+          this.contacts.push({...contact, id});
         } else {
+            id = find.id;
             find.phone = contact.phone;
             find.name = contact.name;
         }
 
         this.persistToStorage();
+
+        return id;
     }
 
     public find(query: string) {

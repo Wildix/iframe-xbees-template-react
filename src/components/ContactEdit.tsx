@@ -1,11 +1,9 @@
-import {Box, Button, Divider, IconButton, Stack, TextField, Typography} from '@mui/material';
-import LogoutIcon from '../assets/icons/LogoutIcon';
-import {useUserContext} from '../contexts/UserContext';
+import {Button, Divider, Stack, TextField, Typography} from '@mui/material';
 import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
 import {useViewPortEffect} from '@wildix/xbees-connect-react';
 
 import {addContact} from '../api/addContact';
-import Client from '@wildix/xbees-connect';
+import {LogoutButton} from './LogoutButton';
 
 interface ContactEditProps {
     query: ContactQuery,
@@ -15,24 +13,11 @@ interface ContactEditProps {
 
 export function ContactEdit({query, contact, onCreate}: ContactEditProps) {
 
-  const [, setUser] = useUserContext();
-
-  const onLogoutClick = () => {
-    setUser(null);
-    Client.getInstance().deleteFromStorage('user');
-  };
-
   useViewPortEffect();
 
   return (
     <Stack>
-      <Box sx={{position: 'absolute', top: 10, right: 10}}>
-        <IconButton onClick={onLogoutClick}>
-          <LogoutIcon
-            color="black"
-          />
-        </IconButton>
-      </Box>
+      <LogoutButton />
       <Typography variant="subtitle1">Create new contact for</Typography>
       {query.email ? <Typography variant="body1">{query.email}</Typography> : null}
       {query.phone ? <Typography variant="body1">{query.phone}</Typography> : null}
@@ -43,7 +28,7 @@ export function ContactEdit({query, contact, onCreate}: ContactEditProps) {
           event.preventDefault();
           await addContact();
           onCreate();
-      }}
+        }}
       >
         <Stack direction="column" spacing={1.5}>
           <TextField
