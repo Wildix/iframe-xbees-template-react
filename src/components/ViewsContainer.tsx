@@ -12,7 +12,7 @@ import {PopupsView} from './PopupsView';
 import {Paths, PublicPaths} from '../roots';
 
 function getBasename() {
-  return Env.isDev() ? '/' : '/template-react/index.html';
+  return window.location.pathname;
 }
 
 export function ViewsContainer() {
