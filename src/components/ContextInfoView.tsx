@@ -7,10 +7,9 @@ import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
 import {searchContactsBy} from '../api/searchContactsBy';
 import {ContactEmpty} from './ContactEmpty';
 import {ContactEdit} from './ContactEdit';
-import {Link as RouterLink, Navigate, Route, Routes, useNavigate} from 'react-router-dom';
-import {Paths} from './ViewsContainer';
+import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
 import {useUserContext} from '../contexts/UserContext';
-import Link from '@mui/material/Link';
+import {Paths} from '../roots';
 
 export function ContextInfoView() {
   const navigate = useNavigate();
@@ -45,7 +44,7 @@ export function ContextInfoView() {
           void Client.getInstance().contactUpdated(query, resultContact);
         }
       } finally {
-        navigate(!resultContact ? Paths.no_matches_view : `${resultContact.id}`)
+        navigate(!resultContact ? Paths.NO_MATCHES_VIEW : `${resultContact.id}`)
       }
     }
 
@@ -71,10 +70,10 @@ export function ContextInfoView() {
         <Routes>
           <Route index element={<Navigate to="loading" replace />} />
           <Route path=":id">
-            <Route index element={<ContactView contact={contact!} edit={() => navigate(Paths.create_contact)} />} />
+            <Route index element={<ContactView contact={contact!} edit={() => navigate(Paths.CREATE_CONTACT)} />} />
           </Route>
           <Route
-            path={Paths.create_contact}
+            path={Paths.CREATE_CONTACT}
             element={(
               <ContactEdit
                 query={context!}
@@ -87,11 +86,10 @@ export function ContextInfoView() {
               />
             )}
           />
-          <Route path={Paths.no_matches_view} element={<ContactEmpty query={context!} create={() => navigate(Paths.create_contact)} />} />
+          <Route path={Paths.NO_MATCHES_VIEW} element={<ContactEmpty query={context!} create={() => navigate(Paths.CREATE_CONTACT)} />} />
           <Route path="loading" element={<Loader />} />
         </Routes>
       </Box>
-      <Link variant="subtitle1" component={RouterLink} to={`/${Paths.toasts_view}`}>Test Toasts</Link>
     </>
   );
 }

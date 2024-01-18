@@ -1,4 +1,3 @@
-import {useUserContext} from '../contexts/UserContext';
 import {Welcome} from './Welcome';
 import {ContextInfoView} from './ContextInfoView';
 import {useAuthorizationEffect} from '../hooks/useAuthorizationEffect';
@@ -9,23 +8,11 @@ import {LoginWaiting} from './LoginWaiting';
 import ProtectedRoute from './ProtectedRoute';
 import {Logout} from './Logout';
 import {ToastsView} from './ToastsView';
+import {PopupsView} from './PopupsView';
+import {Paths, PublicPaths} from '../roots';
 
 function getBasename() {
   return Env.isDev() ? '/' : '/template-react/index.html';
-}
-
-export enum PublicPaths {
-  root = '/',
-  authorize = '/authorize',
-  logout = '/logout',
-  signInAwaiting = '/sign-in-awaiting',
-}
-
-export enum Paths {
-  contact_view = 'contact-view',
-  create_contact = 'create-contact',
-  no_matches_view = 'no-matches-view',
-  toasts_view = 'toasts-view'
 }
 
 export function ViewsContainer() {
@@ -34,18 +21,19 @@ export function ViewsContainer() {
   return (
     <BrowserRouter basename={getBasename()}>
       <Routes>
-        <Route path={PublicPaths.root} element={<Welcome />}>
-          <Route index element={<Navigate to={PublicPaths.authorize} replace />} />
-          <Route path={PublicPaths.authorize} element={<Login />} />
-          <Route path={PublicPaths.signInAwaiting} element={<LoginWaiting />} />
+        <Route path={PublicPaths.ROOT} element={<Welcome />}>
+          <Route index element={<Navigate to={PublicPaths.AUTHORIZE} replace />} />
+          <Route path={PublicPaths.AUTHORIZE} element={<Login />} />
+          <Route path={PublicPaths.SIGN_IN_AWAITING} element={<LoginWaiting />} />
         </Route>
         <Route
-          path={PublicPaths.logout}
+          path={PublicPaths.LOGOUT}
           element={<Logout />}
         />
         <Route element={<ProtectedRoute />}>
-          <Route path={Paths.toasts_view} element={<ToastsView />} />
-          <Route path={`${Paths.contact_view}/*`} element={<ContextInfoView />} />
+          <Route path={Paths.OPEN_POPUP_VIEW} element={<PopupsView />} />
+          <Route path={Paths.TOASTS_VIEW} element={<ToastsView />} />
+          <Route path={`${Paths.CONTACT_VIEW}/*`} element={<ContextInfoView />} />
         </Route>
       </Routes>
     </BrowserRouter>

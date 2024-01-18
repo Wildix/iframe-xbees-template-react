@@ -4,7 +4,8 @@ import {User} from '../types';
 import Auth from '../auth';
 import Client from '@wildix/xbees-connect';
 import {useNavigate} from 'react-router-dom';
-import {PublicPaths} from './ViewsContainer';
+
+import {PublicPaths} from '../roots';
 
 type CredentialResponse = {
     email: string;
@@ -33,7 +34,7 @@ export function Login() {
     setUser(user);
     Auth.getInstance().user = user;
     Client.getInstance().saveToStorage('user', user);
-    navigate(PublicPaths.signInAwaiting);
+    navigate(PublicPaths.SIGN_IN_AWAITING);
   };
 
   return (

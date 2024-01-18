@@ -2,13 +2,14 @@ import xBeesLogo from '/logo.png'
 import {Stack} from '@mui/material';
 import {Navigate, Outlet} from 'react-router-dom';
 import {useUserContext} from '../contexts/UserContext';
-import {Paths} from './ViewsContainer';
+
+import {Paths} from '../roots';
 
 export function Welcome() {
   const [user] = useUserContext();
 
   if (user) {
-    return <Navigate to={Paths.contact_view} replace />;
+    return <Navigate to={Paths.CONTACT_VIEW} replace />;
   }
 
   return (
