@@ -31,15 +31,29 @@ To set up a demo:
 
 1. **Download a copy of the template project**
 2. **Install dependencies:** `yarn install`
-3. **Run the template:** `yarn dev`
+3. **Run the template:**
+   - For local development without ngrok: `yarn dev:domain`
+   - For testing with ngrok tunneling: `yarn dev`
 4. **Implement components and integration logic:** Customize the template for your integration
 
 ### Integrate with x-bees
-If you want to integrate your local environment for testing purposes during development, you may need to expose your project URL for x-bees to access. To do this, follow these steps:
-- Use NGROK for tunneling ([setup](https://ngrok.com/download))
-- Run `ngrok http 5173` 
-- Open the x-bees web app and configure x-bees integrations by adding your temporary integration locally
 
+You have two options for integrating your local development environment with x-bees:
+
+#### 1. Local Development Without ngrok
+
+Run the local development server with domain mapping:
+
+```bash
+yarn dev:domain
+```
+In x-bees, configure a new iFrame integration using the URL: https://local.integrations.x-bees.com
+
+#### 2. Using ngrok (Tunneling)
+
+Set up ngrok (https://ngrok.com/download)
+Run ngrok http 5173
+In x-bees, configure a new iFrame integration using the ngrok-provided URL (e.g., https://<random-string>.ngrok.io)
 ### x-bees - iFrame Communication Library
 
 Ensure that you are using the latest version of the [xbees-connect library](https://www.npmjs.com/package/@wildix/xbees-connect) and [xbees-connect-react library](https://www.npmjs.com/package/@wildix/xbees-connect-react). 
