@@ -10,6 +10,7 @@ import {ContactEdit} from './ContactEdit';
 import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
 import {useUserContext} from '../contexts/UserContext';
 import {Paths} from '../roots';
+import Env from '../Env';
 
 export function ContextInfoView() {
   const navigate = useNavigate();
@@ -61,12 +62,10 @@ export function ContextInfoView() {
 
   return (
     <>
-      <br />
-      <Typography variant="subtitle1">welcome</Typography>
-      <Typography variant="body2">{`${user!.name} (${user!.email})`}</Typography>
-      <br />
-      <Typography variant="caption" fontWeight="bold">Current x-bees context:</Typography>
+      <Typography variant="subtitle1" fontWeight="bold">{`welcome v${Env.appVersion}`}</Typography>
+      <Typography variant="body2">{`${user!.email}`}</Typography>
       <Box sx={{mt: 1}}>
+        <Typography variant="subtitle2" fontWeight="bold">Current x-bees context:</Typography>
         <Routes>
           <Route index element={<Navigate to="loading" replace />} />
           <Route path=":id">

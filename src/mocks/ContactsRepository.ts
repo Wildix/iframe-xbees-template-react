@@ -1,3 +1,4 @@
+import Client from '@wildix/xbees-connect';
 import {Contact} from '@wildix/xbees-connect/dist-types/types';
 import {initialContacts} from './initialContacts';
 
@@ -13,10 +14,8 @@ export default class ContactsRepository {
     }
 
     public refreshFromStorage() {
-        const contactsStorage = localStorage.getItem('contacts');
-
         try {
-            const contactsStore = contactsStorage && JSON.parse(contactsStorage);
+            const contactsStore = Client.getInstance().getFromStorage<Contact[]>('contacts');
 
             this.contacts.length = 0
 
@@ -32,7 +31,7 @@ export default class ContactsRepository {
 
     public persistToStorage() {
         try {
-            localStorage.setItem('contacts', JSON.stringify(this.contacts));
+            Client.getInstance().saveToStorage('contacts', JSON.stringify(this.contacts));
         } catch (error) {
             console.error(error)
         }

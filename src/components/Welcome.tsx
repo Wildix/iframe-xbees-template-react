@@ -4,6 +4,7 @@ import {Navigate, Outlet} from 'react-router-dom';
 import {useUserContext} from '../contexts/UserContext';
 
 import {Paths} from '../roots';
+import Env from '../Env';
 
 export function Welcome() {
   const [user] = useUserContext();
@@ -20,9 +21,12 @@ export function Welcome() {
         </a>
       </div>
       <Outlet />
-      <p className="read-the-docs">
+      <caption className="read-the-docs">
         Click on the x-bees logo to learn more
-      </p>
+      </caption>
+      <caption className="read-the-docs">
+        {`v${Env.appVersion}`}
+      </caption>
     </Stack>
   );
 }
