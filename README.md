@@ -32,20 +32,41 @@ To set up a demo:
 1. **Download a copy of the template project**
 2. **Install dependencies:** `yarn install`
 3. **Run the template:**
-   - For local development without ngrok: `yarn dev:domain`
+   - For local development without ngrok: `sudo yarn dev --host local.integrations.x-bees.com --port=443` change host <local.integrations.x-bees.com> or port
    - For testing with ngrok tunneling: `yarn dev`
 4. **Implement components and integration logic:** Customize the template for your integration
+
 
 ### Integrate with x-bees
 
 You have two options for integrating your local development environment with x-bees:
 
-#### 1. Local Development Without ngrok
+#### 1. Local Development
 
-Run the local development server with domain mapping:
-
+make sure mkcert is added
 ```bash
-yarn dev:domain
+yarn add vite-plugin-mkcert -D
+```
+Configure [vite.config.ts](vite.config.ts)
+```js
+import {defineConfig} from'vite'
+import mkcert from'vite-plugin-mkcert'
+
+export default defineConfig({
+    plugins: [mkcert()]
+})
+```
+add domain to hosts file
+```bash
+sudo nano /etc/hosts
+```
+add row with
+```
+127.0.0.1    local.integrations.x-bees.com
+```  
+Run the local development server with domain mapping:
+```bash
+sudo yarn dev --host local.integrations.x-bees.com --port=443
 ```
 In x-bees, configure a new iFrame integration using the URL: https://local.integrations.x-bees.com
 
