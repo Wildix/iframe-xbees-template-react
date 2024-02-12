@@ -17,7 +17,7 @@ function App() {
     <div className="container">
       <UserContext.Provider value={userContext}>
         <ThemeProvider theme={theme}>
-          <CssBaseline />
+          <CssBaseline enableColorScheme />
           <ViewsContainer />
         </ThemeProvider>
       </UserContext.Provider>

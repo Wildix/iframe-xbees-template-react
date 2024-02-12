@@ -10,6 +10,7 @@ import {Logout} from './Logout';
 import {ToastsView} from './ToastsView';
 import {PopupsView} from './PopupsView';
 import {Paths, PublicPaths} from '../roots';
+import {InputsView} from './InputsView';
 
 function getBasename() {
   return window.location.pathname;
@@ -33,6 +34,7 @@ export function ViewsContainer() {
         <Route element={<ProtectedRoute />}>
           <Route path={Paths.OPEN_POPUP_VIEW} element={<PopupsView />} />
           <Route path={Paths.TOASTS_VIEW} element={<ToastsView />} />
+          <Route path={Paths.INPUTS_VIEW} element={<InputsView />} />
           <Route path={`${Paths.CONTACT_VIEW}/*`} element={<ContextInfoView />} />
         </Route>
       </Routes>

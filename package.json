@@ -1,15 +1,17 @@
 {
   "name": "template-react",
   "private": true,
-  "version": "2.3.4",
+  "version": "2.4.0-beta.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:domain": "vite --host local.integrations.x-bees.com --port=443",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "release:patch": "yarn version --patch",
-    "release:minor": "yarn version --minor",
-    "release:major": "yarn version --major",
+    "version:patch": "yarn version --no-git-tag-version  --preid beta --patch",
+    "version:minor": "yarn version --no-git-tag-version  --preid beta --minor",
+    "version:prepatch": "yarn version --no-git-tag-version  --preid beta --prepatch",
+    "version:preminor": "yarn version --no-git-tag-version  --preid beta --preminor",
     "lint": "eslint . && tsc --noEmit",
     "lint:fix": "eslint . --fix --quiet",
     "test": "vitest",
@@ -39,6 +41,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "typescript": "^5.3.3",
     "vite": "^5.0.11",
+    "vite-plugin-mkcert": "^1.17.3",
     "vitest": "^1.2.1"
   }
 }
