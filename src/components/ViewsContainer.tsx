@@ -1,8 +1,7 @@
 import {Welcome} from './Welcome';
 import {ContextInfoView} from './ContextInfoView';
 import {useAuthorizationEffect} from '../hooks/useAuthorizationEffect';
-import Env from '../Env';
-import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
+import {MemoryRouter, Navigate, Route, Routes} from 'react-router-dom';
 import {Login} from './Login';
 import {LoginWaiting} from './LoginWaiting';
 import ProtectedRoute from './ProtectedRoute';
@@ -12,15 +11,11 @@ import {PopupsView} from './PopupsView';
 import {Paths, PublicPaths} from '../roots';
 import {InputsView} from './InputsView';
 
-function getBasename() {
-  return window.location.pathname;
-}
-
 export function ViewsContainer() {
   useAuthorizationEffect();
 
   return (
-    <BrowserRouter basename={getBasename()}>
+    <MemoryRouter>
       <Routes>
         <Route path={PublicPaths.ROOT} element={<Welcome />}>
           <Route index element={<Navigate to={PublicPaths.AUTHORIZE} replace />} />
@@ -38,6 +33,6 @@ export function ViewsContainer() {
           <Route path={`${Paths.CONTACT_VIEW}/*`} element={<ContextInfoView />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </MemoryRouter>
   )
 }
