@@ -48,6 +48,8 @@ export const handleSystemStart = async () => {
           email: contact.email,
           phone: contact.phone
         } as Contact))
+      } else {
+        throw Error('not found')
       }
     } catch (error) {
       reject(`${error}`)
