@@ -1,27 +1,29 @@
-import {useUserContext} from '../contexts/UserContext';
-import {Box, Button, Stack, Typography} from '@mui/material';
-import {User} from '../types';
-import Auth from '../auth';
-import Client from '@wildix/xbees-connect';
 import {useNavigate} from 'react-router-dom';
 
+import {Box, Button, Stack, Typography} from '@mui/material';
+
+import Client from '@wildix/xbees-connect';
+
+import Auth from '../auth';
+import {useUserContext} from '../contexts/UserContext';
 import {PublicPaths} from '../roots';
+import {User} from '../types';
 
 type CredentialResponse = {
-    email: string;
-}
+  email: string;
+};
 
 const credentialsMock: CredentialResponse = {
-    email: Client.getInstance().getUserEmail() ?? 'no@email'
-}
+  email: Client.getInstance().getUserEmail() ?? 'no@email',
+};
 
 function getUserFromCredentials(credentialResponse: CredentialResponse): User {
-  const {email} = credentialResponse
+  const {email} = credentialResponse;
   const name = email.split('@')[0] ?? email;
 
   return {
     name,
-    email
+    email,
   };
 }
 
@@ -30,7 +32,7 @@ export function Login() {
   const navigate = useNavigate();
 
   const onSuccess = (credentialResponse: CredentialResponse) => {
-    const user = getUserFromCredentials(credentialResponse)
+    const user = getUserFromCredentials(credentialResponse);
     setUser(user);
     Auth.getInstance().user = user;
     Client.getInstance().saveToStorage('user', user);
@@ -50,11 +52,7 @@ export function Login() {
         </Button>
       </Box>
       <Typography variant="caption" align="center">
-        Edit
-        {' '}
-        <code>src/components/Login.tsx</code>
-        {' '}
-        and save to test
+        Edit <code>src/components/Login.tsx</code> and save to test
       </Typography>
     </Stack>
   );

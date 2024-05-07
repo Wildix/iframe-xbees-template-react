@@ -1,15 +1,16 @@
-import {Welcome} from './Welcome';
-import {ContextInfoView} from './ContextInfoView';
-import {useAuthorizationEffect} from '../hooks/useAuthorizationEffect';
 import {MemoryRouter, Navigate, Route, Routes} from 'react-router-dom';
+
+import {useAuthorizationEffect} from '../hooks/useAuthorizationEffect';
+import {Paths, PublicPaths} from '../roots';
+import {ContextInfoView} from './ContextInfoView';
+import {InputsView} from './InputsView';
 import {Login} from './Login';
 import {LoginWaiting} from './LoginWaiting';
-import ProtectedRoute from './ProtectedRoute';
 import {Logout} from './Logout';
-import {ToastsView} from './ToastsView';
 import {PopupsView} from './PopupsView';
-import {Paths, PublicPaths} from '../roots';
-import {InputsView} from './InputsView';
+import ProtectedRoute from './ProtectedRoute';
+import {ToastsView} from './ToastsView';
+import {Welcome} from './Welcome';
 
 export function ViewsContainer() {
   useAuthorizationEffect();
@@ -22,10 +23,7 @@ export function ViewsContainer() {
           <Route path={PublicPaths.AUTHORIZE} element={<Login />} />
           <Route path={PublicPaths.SIGN_IN_AWAITING} element={<LoginWaiting />} />
         </Route>
-        <Route
-          path={PublicPaths.LOGOUT}
-          element={<Logout />}
-        />
+        <Route path={PublicPaths.LOGOUT} element={<Logout />} />
         <Route element={<ProtectedRoute />}>
           <Route path={Paths.OPEN_POPUP_VIEW} element={<PopupsView />} />
           <Route path={Paths.TOASTS_VIEW} element={<ToastsView />} />
@@ -34,5 +32,5 @@ export function ViewsContainer() {
         </Route>
       </Routes>
     </MemoryRouter>
-  )
+  );
 }

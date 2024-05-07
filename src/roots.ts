@@ -11,5 +11,5 @@ export enum Paths {
   NO_MATCHES_VIEW = 'no-matches-view',
   TOASTS_VIEW = 'toasts-view',
   INPUTS_VIEW = 'inputs-view',
-  OPEN_POPUP_VIEW = 'open-popup-view'
+  OPEN_POPUP_VIEW = 'open-popup-view',
 }

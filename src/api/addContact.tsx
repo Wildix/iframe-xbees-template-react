@@ -1,24 +1,24 @@
 export async function addContact() {
-    const url = new URL(`${window.location.origin}/contacts`);
+  const url = new URL(`${window.location.origin}/contacts`);
 
-    const form: HTMLFormElement = document.getElementById('contactForm') as HTMLFormElement;
-    const formData = new FormData(form!);
+  const form: HTMLFormElement = document.getElementById('contactForm') as HTMLFormElement;
+  const formData = new FormData(form!);
 
-    // Make the Fetch API request
-    const response = await fetch(url, {
-        method: 'POST',
-        body: formData,
-    })
+  // Make the Fetch API request
+  const response = await fetch(url, {
+    method: 'POST',
+    body: formData,
+  });
 
-    if (!response) {
-        console.error('response', response)
+  if (!response) {
+    console.error('response', response);
 
-        return;
-    }
+    return;
+  }
 
-    const data = await response.json();
+  const data = await response.json();
 
-    console.info('Success', data)
+  console.info('Success', data);
 
-    return data;
+  return data;
 }

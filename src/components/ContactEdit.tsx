@@ -1,4 +1,5 @@
 import {Button, Divider, Stack, TextField, Typography} from '@mui/material';
+
 import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
 import {useViewPortEffect} from '@wildix/xbees-connect-react';
 
@@ -6,13 +7,12 @@ import {addContact} from '../api/addContact';
 import {LogoutButton} from './LogoutButton';
 
 interface ContactEditProps {
-    query: ContactQuery,
-    contact?: Contact | null,
-    onCreate: () => void,
+  query: ContactQuery;
+  contact?: Contact | null;
+  onCreate: () => void;
 }
 
 export function ContactEdit({query, contact, onCreate}: ContactEditProps) {
-
   useViewPortEffect();
 
   return (
@@ -28,8 +28,7 @@ export function ContactEdit({query, contact, onCreate}: ContactEditProps) {
           event.preventDefault();
           await addContact();
           onCreate();
-        }}
-      >
+        }}>
         <Stack direction="column" spacing={1.5}>
           <TextField
             required
@@ -59,7 +58,9 @@ export function ContactEdit({query, contact, onCreate}: ContactEditProps) {
             defaultValue={contact?.phone ?? query.phone}
           />
           <div className="buttons">
-            <Button type="submit" className="app-button" size="small" variant="contained">Create contact</Button>
+            <Button type="submit" className="app-button" size="small" variant="contained">
+              Create contact
+            </Button>
           </div>
         </Stack>
       </form>
@@ -67,11 +68,7 @@ export function ContactEdit({query, contact, onCreate}: ContactEditProps) {
       <Divider />
       <br />
       <Typography variant="caption">
-        Edit
-        {' '}
-        <code>src/components/ContactEdit.tsx</code>
-        {' '}
-        and save to test
+        Edit <code>src/components/ContactEdit.tsx</code> and save to test
       </Typography>
     </Stack>
   );

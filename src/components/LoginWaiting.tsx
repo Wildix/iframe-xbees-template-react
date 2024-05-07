@@ -1,9 +1,11 @@
 import {useEffect, useState} from 'react';
-import {Box, CircularProgress, Typography} from '@mui/material';
 import {useNavigate} from 'react-router-dom';
 
-const awaiting = 'Still waiting for your authentication process to proceed. If you encounter any difficulties, feel free to close this popup and initiate the process anew or seek assistance.'
-const tokens = 'Token acquisition in progress. Please await completion.'
+import {Box, CircularProgress, Typography} from '@mui/material';
+
+const awaiting =
+  'Still waiting for your authentication process to proceed. If you encounter any difficulties, feel free to close this popup and initiate the process anew or seek assistance.';
+const tokens = 'Token acquisition in progress. Please await completion.';
 
 export function LoginWaiting() {
   const [showAwaitingNotification, setShowNotification] = useState<string | null>(null);
@@ -25,7 +27,7 @@ export function LoginWaiting() {
       clearTimeout(timeoutId1);
       clearTimeout(timeoutId2);
       clearTimeout(timeoutId3);
-    }
+    };
   }, []);
 
   return (
@@ -33,9 +35,7 @@ export function LoginWaiting() {
       <CircularProgress />
       {showAwaitingNotification ? (
         <Box>
-          <Typography variant="body1">
-            {showAwaitingNotification}
-          </Typography>
+          <Typography variant="body1">{showAwaitingNotification}</Typography>
         </Box>
       ) : null}
     </Box>

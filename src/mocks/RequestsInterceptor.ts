@@ -1,13 +1,15 @@
-import ContactsRepository from './ContactsRepository';
 import {Contact} from '@wildix/xbees-connect/dist-types/types';
 
+import ContactsRepository from './ContactsRepository';
+
 // Function to simulate delay (replace this with an appropriate delay mechanism)
-const delay = (timeout: number = 1000) => new Promise((resolve) => {
+const delay = (timeout: number = 1000) =>
+  new Promise((resolve) => {
     setTimeout(resolve, timeout);
   });
 
 async function searchHandler(resource: Request | string | URL) {
-  await delay()
+  await delay();
   const urlObject = new URL(resource.toString());
 
   const query = urlObject.searchParams.get('query') as string;
@@ -19,14 +21,15 @@ async function searchHandler(resource: Request | string | URL) {
     return results;
   }, [] as Contact[]);
 
-
   // Returning a response with a delay
-  return Promise.resolve(new Response(JSON.stringify({data: contacts}), {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }));
+  return Promise.resolve(
+    new Response(JSON.stringify({data: contacts}), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }),
+  );
 }
 
 async function addContactHandler(options: RequestInit) {
@@ -49,18 +52,20 @@ async function addContactHandler(options: RequestInit) {
       // @ts-expect-error contact
       const id = ContactsRepository.getInstance().addOrUpdate(contact);
 
-      return Promise.resolve(new Response(JSON.stringify({ status: 'ok', id }), {
-        status: 201,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }));
+      return Promise.resolve(
+        new Response(JSON.stringify({status: 'ok', id}), {
+          status: 201,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }),
+      );
     }
   }
 }
 
 export default function startFetchRequestsInterceptor() {
-  const { fetch: originalFetch } = window;
+  const {fetch: originalFetch} = window;
 
   // @ts-expect-error window.fetch
   window.fetch = (resource, config) => {

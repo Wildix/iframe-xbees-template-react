@@ -1,10 +1,12 @@
 import {Button, Divider, Stack, Typography} from '@mui/material';
+
 import {ContactQuery} from '@wildix/xbees-connect/dist-types/types';
+
 import {LogoutButton} from './LogoutButton';
 
 interface ContactViewProps {
-    query: ContactQuery,
-    create: () => void,
+  query: ContactQuery;
+  create: () => void;
 }
 
 export function ContactEmpty({query, create}: ContactViewProps) {
@@ -19,11 +21,7 @@ export function ContactEmpty({query, create}: ContactViewProps) {
       <Divider />
       <br />
       <Typography variant="caption">
-        Edit
-        {' '}
-        <code>src/components/ContactEmpty.tsx</code>
-        {' '}
-        and save to test
+        Edit <code>src/components/ContactEmpty.tsx</code> and save to test
       </Typography>
     </Stack>
   );

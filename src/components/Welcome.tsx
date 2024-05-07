@@ -1,10 +1,12 @@
-import xBeesLogo from '/logo.png'
-import {Stack} from '@mui/material';
 import {Navigate, Outlet} from 'react-router-dom';
-import {useUserContext} from '../contexts/UserContext';
 
-import {Paths} from '../roots';
+import {Stack} from '@mui/material';
+
+import {useUserContext} from '../contexts/UserContext';
 import Env from '../Env';
+import {Paths} from '../roots';
+
+import xBeesLogo from '/logo.png';
 
 export function Welcome() {
   const [user] = useUserContext();
@@ -21,12 +23,8 @@ export function Welcome() {
         </a>
       </div>
       <Outlet />
-      <caption className="read-the-docs">
-        Click on the x-bees logo to learn more
-      </caption>
-      <caption className="read-the-docs">
-        {`v${Env.appVersion}`}
-      </caption>
+      <caption className="read-the-docs">Click on the x-bees logo to learn more</caption>
+      <caption className="read-the-docs">{`v${Env.appVersion}`}</caption>
     </Stack>
   );
 }

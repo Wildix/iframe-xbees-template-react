@@ -1,7 +1,7 @@
-import {Button, Stack, TextField, Typography} from '@mui/material';
-import Client from '@wildix/xbees-connect';
-import Link from '@mui/material/Link';
 import {Link as RouterLink} from 'react-router-dom';
+
+import {Stack, TextField, Typography} from '@mui/material';
+import Link from '@mui/material/Link';
 
 export function InputsView() {
   return (
@@ -16,7 +16,9 @@ export function InputsView() {
         variant="outlined"
         placeholder="Name placeholder"
       />
-      <Link color="primary" to="/" component={RouterLink}>go back</Link>
+      <Link color="primary" to="/" component={RouterLink}>
+        go back
+      </Link>
     </Stack>
-  )
+  );
 }

@@ -1,8 +1,9 @@
-import {useUserContext} from '../contexts/UserContext';
 import {useEffect} from 'react';
-import Client from '@wildix/xbees-connect';
 import {Navigate} from 'react-router-dom';
 
+import Client from '@wildix/xbees-connect';
+
+import {useUserContext} from '../contexts/UserContext';
 import {PublicPaths} from '../roots';
 
 export const Logout = () => {
@@ -13,5 +14,5 @@ export const Logout = () => {
     Client.getInstance().deleteFromStorage('user');
   }, [setUser]);
 
-  return <Navigate to={PublicPaths.ROOT} replace />
+  return <Navigate to={PublicPaths.ROOT} replace />;
 };

@@ -1,16 +1,19 @@
 import {useEffect, useState} from 'react';
-import Loader from './Loader';
-import {ContactView} from './ContactView';
+import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
+
 import {Box, Typography} from '@mui/material';
+
 import Client from '@wildix/xbees-connect';
 import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
+
 import {searchContactsBy} from '../api/searchContactsBy';
-import {ContactEmpty} from './ContactEmpty';
-import {ContactEdit} from './ContactEdit';
-import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
 import {useUserContext} from '../contexts/UserContext';
-import {Paths} from '../roots';
 import Env from '../Env';
+import {Paths} from '../roots';
+import {ContactEdit} from './ContactEdit';
+import {ContactEmpty} from './ContactEmpty';
+import {ContactView} from './ContactView';
+import Loader from './Loader';
 
 export function ContextInfoView() {
   const navigate = useNavigate();
@@ -45,7 +48,7 @@ export function ContextInfoView() {
           void Client.getInstance().contactUpdated(query, resultContact);
         }
       } finally {
-        navigate(!resultContact ? Paths.NO_MATCHES_VIEW : `${resultContact.id}`)
+        navigate(!resultContact ? Paths.NO_MATCHES_VIEW : `${resultContact.id}`);
       }
     }
 
@@ -56,7 +59,7 @@ export function ContextInfoView() {
 
   useEffect(() => {
     if (contact) {
-      navigate(contact.id)
+      navigate(contact.id);
     }
   }, [contact]);
 
@@ -65,7 +68,9 @@ export function ContextInfoView() {
       <Typography variant="subtitle1" fontWeight="bold">{`welcome v${Env.appVersion}`}</Typography>
       <Typography variant="body2">{`${user!.email}`}</Typography>
       <Box sx={{mt: 1}}>
-        <Typography variant="subtitle2" fontWeight="bold">Current x-bees context:</Typography>
+        <Typography variant="subtitle2" fontWeight="bold">
+          Current x-bees context:
+        </Typography>
         <Routes>
           <Route index element={<Navigate to="loading" replace />} />
           <Route path=":id">
@@ -73,7 +78,7 @@ export function ContextInfoView() {
           </Route>
           <Route
             path={Paths.CREATE_CONTACT}
-            element={(
+            element={
               <ContactEdit
                 query={context!}
                 contact={contact}
@@ -83,9 +88,12 @@ export function ContextInfoView() {
                   setIsUpdated(true);
                 }}
               />
-            )}
+            }
           />
-          <Route path={Paths.NO_MATCHES_VIEW} element={<ContactEmpty query={context!} create={() => navigate(Paths.CREATE_CONTACT)} />} />
+          <Route
+            path={Paths.NO_MATCHES_VIEW}
+            element={<ContactEmpty query={context!} create={() => navigate(Paths.CREATE_CONTACT)} />}
+          />
           <Route path="loading" element={<Loader />} />
         </Routes>
       </Box>

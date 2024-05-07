@@ -1,12 +1,14 @@
-import DetailsProperty from './DetailsProperty';
 import {Button, Divider, Stack, Typography} from '@mui/material';
+
 import Client from '@wildix/xbees-connect';
 import {Contact} from '@wildix/xbees-connect/dist-types/types';
+
+import DetailsProperty from './DetailsProperty';
 import {LogoutButton} from './LogoutButton';
 
 interface ContactViewProps {
-    contact: Contact,
-    edit: () => void
+  contact: Contact;
+  edit: () => void;
 }
 
 export function ContactView({contact, edit}: ContactViewProps) {
@@ -26,18 +28,14 @@ export function ContactView({contact, edit}: ContactViewProps) {
           variant="phone"
           onClick={() => startCall(contact.phone!)}
         />
-) : null}
+      ) : null}
       <br />
       <Button onClick={edit}>Edit contact</Button>
       <br />
       <Divider />
       <br />
       <Typography variant="caption">
-        Edit
-        {' '}
-        <code>src/components/ContactView.tsx</code>
-        {' '}
-        and save to test
+        Edit <code>src/components/ContactView.tsx</code> and save to test
       </Typography>
     </Stack>
   );

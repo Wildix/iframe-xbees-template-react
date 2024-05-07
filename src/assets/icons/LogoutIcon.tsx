@@ -1,8 +1,8 @@
-import { SvgIcon } from '@mui/material';
+import {SvgIcon} from '@mui/material';
 
-export default function LogoutIcon({ size = 20, color = 'rgb(22, 123, 200)', ...restProps }) {
+export default function LogoutIcon({size = 20, color = 'rgb(22, 123, 200)', ...restProps}) {
   return (
-    <SvgIcon style={{ width: size, height: size }} viewBox="0 0 471.2 471.2" {...restProps}>
+    <SvgIcon style={{width: size, height: size}} viewBox="0 0 471.2 471.2" {...restProps}>
       <path
         d="M227.619,444.2h-122.9c-33.4,0-60.5-27.2-60.5-60.5V87.5c0-33.4,27.2-60.5,60.5-60.5h124.9c7.5,0,13.5-6,13.5-13.5
 			s-6-13.5-13.5-13.5h-124.9c-48.3,0-87.5,39.3-87.5,87.5v296.2c0,48.3,39.3,87.5,87.5,87.5h122.9c7.5,0,13.5-6,13.5-13.5

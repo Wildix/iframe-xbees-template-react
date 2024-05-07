@@ -1,5 +1,6 @@
 import Link from '@mui/material/Link';
 import {styled} from '@mui/material/styles';
+
 import {CopyInfoButton} from '@wildix/xbees-connect-react';
 
 const PropertyRoot = styled('div')({
@@ -48,7 +49,7 @@ const PropertyValueLink = styled(Link)(({theme}) => ({
   textOverflow: 'ellipsis',
   '&:hover': {
     color: theme.palette.primary.main,
-  }
+  },
 }));
 
 interface ContactPropertyProps {
@@ -71,8 +72,7 @@ export default function DetailsProperty({'data-qa': dataQa, title, value, varian
           underline="none"
           target="_blank"
           rel="noopener"
-          onClick={onClick}
-        >
+          onClick={onClick}>
           {value}
         </PropertyValueLink>
       );
@@ -89,20 +89,13 @@ export default function DetailsProperty({'data-qa': dataQa, title, value, varian
     }
 
     default: {
-      valueComponent = (
-        <PropertyValueText data-qa={`${dataQa}-value`}>
-          {value}
-        </PropertyValueText>
-      );
+      valueComponent = <PropertyValueText data-qa={`${dataQa}-value`}>{value}</PropertyValueText>;
     }
   }
 
   return (
     <PropertyRoot>
-      <PropertyTitle data-qa={`${dataQa}-label`}>
-        {title}
-        :
-      </PropertyTitle>
+      <PropertyTitle data-qa={`${dataQa}-label`}>{title}:</PropertyTitle>
       <PropertyHoverObserver>
         {valueComponent}
         <CopyInfoButton value={value} size={20} />

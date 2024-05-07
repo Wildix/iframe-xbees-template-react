@@ -1,5 +1,5 @@
-import startFetchRequestsInterceptor from './mocks/RequestsInterceptor';
 import ContactsRepository from './mocks/ContactsRepository';
+import startFetchRequestsInterceptor from './mocks/RequestsInterceptor';
 
 class Env {
   static appName = APP_NAME;
@@ -15,7 +15,7 @@ class Env {
   }
 
   static isDev() {
-    return import.meta.env.DEV
+    return import.meta.env.DEV;
   }
 }
 
