@@ -1,4 +1,4 @@
-import {useMemo, useState} from 'react';
+import {StrictMode, useMemo, useState} from 'react';
 
 import {CssBaseline, ThemeProvider} from '@mui/material';
 
@@ -9,6 +9,7 @@ import {ViewsContainer} from './components/ViewsContainer';
 import {UserContext, UserContextState} from './contexts/UserContext';
 
 import './App.css';
+import './index.css';
 
 function App() {
   const [user, setUser] = useState(Auth.getInstance().user);
@@ -18,14 +19,16 @@ function App() {
   const userContext: UserContextState = useMemo(() => [user, setUser], [user]);
 
   return (
-    <div className="container">
-      <UserContext.Provider value={userContext}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline enableColorScheme />
-          <ViewsContainer />
-        </ThemeProvider>
-      </UserContext.Provider>
-    </div>
+    <StrictMode>
+      <div className="container">
+        <UserContext.Provider value={userContext}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline enableColorScheme />
+            <ViewsContainer />
+          </ThemeProvider>
+        </UserContext.Provider>
+      </div>
+    </StrictMode>
   );
 }
 

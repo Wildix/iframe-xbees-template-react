@@ -1,17 +1,15 @@
-import Client from '@wildix/xbees-connect';
-
-import Auth from './auth';
 import {handleSystemStart} from './handleSystemStart';
-import ContactsRepository from './mocks/ContactsRepository';
 
-Client.getInstance().onStorage((storageEvent) => {
-  if (storageEvent.key === 'user') {
-    Auth.refreshFromStorage();
+const searchParams = new URLSearchParams(window.location.search);
+
+switch (true) {
+  case searchParams.has('authorize'): {
+    // do auth redirects
+    break;
   }
 
-  if (storageEvent.key === 'contacts') {
-    ContactsRepository.getInstance().refreshFromStorage();
+  // add cases which not requires start of app
+  default: {
+    void handleSystemStart();
   }
-});
-
-void handleSystemStart();
+}

@@ -3,8 +3,8 @@ import {Navigate, Outlet} from 'react-router-dom';
 import {Stack} from '@mui/material';
 
 import {useUserContext} from '../contexts/UserContext';
+import {Paths} from '../enums';
 import Env from '../Env';
-import {Paths} from '../roots';
 
 import xBeesLogo from '/logo.png';
 

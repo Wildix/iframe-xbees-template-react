@@ -3,8 +3,8 @@ import {Button, Divider, Stack, TextField, Typography} from '@mui/material';
 import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
 import {useViewPortEffect} from '@wildix/xbees-connect-react';
 
-import {addContact} from '../api/addContact';
-import {LogoutButton} from './LogoutButton';
+import {addContact} from '../../../api/addContact';
+import {LogoutButton} from '../../login/components/LogoutButton';
 
 interface ContactEditProps {
   query: ContactQuery;

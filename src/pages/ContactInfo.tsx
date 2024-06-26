@@ -7,15 +7,15 @@ import Client from '@wildix/xbees-connect';
 import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
 
 import {searchContactsBy} from '../api/searchContactsBy';
+import Loader from '../components/Loader';
 import {useUserContext} from '../contexts/UserContext';
+import {Paths} from '../enums';
 import Env from '../Env';
-import {Paths} from '../roots';
-import {ContactEdit} from './ContactEdit';
-import {ContactEmpty} from './ContactEmpty';
-import {ContactView} from './ContactView';
-import Loader from './Loader';
+import {ContactDetails} from '../modules/contact/views/ContactDetails';
+import {ContactEdit} from '../modules/contact/views/ContactEdit';
+import {ContactEmpty} from '../modules/contact/views/ContactEmpty';
 
-export function ContextInfoView() {
+export function ContactInfo() {
   const navigate = useNavigate();
   const [user] = useUserContext();
   const [context, setContext] = useState<ContactQuery | null>(null);
@@ -74,7 +74,7 @@ export function ContextInfoView() {
         <Routes>
           <Route index element={<Navigate to="loading" replace />} />
           <Route path=":id">
-            <Route index element={<ContactView contact={contact!} edit={() => navigate(Paths.CREATE_CONTACT)} />} />
+            <Route index element={<ContactDetails contact={contact!} edit={() => navigate(Paths.CREATE_CONTACT)} />} />
           </Route>
           <Route
             path={Paths.CREATE_CONTACT}

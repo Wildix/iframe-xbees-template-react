@@ -4,7 +4,7 @@ import {Stack} from '@mui/material';
 import Link from '@mui/material/Link';
 
 import {useUserContext} from '../contexts/UserContext';
-import {Paths} from '../roots';
+import {Paths} from '../enums';
 
 const ProtectedRoute = () => {
   const [user] = useUserContext();

@@ -4,10 +4,10 @@ import {Box, Button, Stack, Typography} from '@mui/material';
 
 import Client from '@wildix/xbees-connect';
 
-import Auth from '../auth';
-import {useUserContext} from '../contexts/UserContext';
-import {PublicPaths} from '../roots';
-import {User} from '../types';
+import Auth from '../../../auth';
+import {useUserContext} from '../../../contexts/UserContext';
+import {PublicPaths} from '../../../enums';
+import {User} from '../../../types';
 
 type CredentialResponse = {
   email: string;

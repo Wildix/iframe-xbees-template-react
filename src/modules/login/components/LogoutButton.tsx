@@ -2,8 +2,8 @@ import {useNavigate} from 'react-router-dom';
 
 import {Box, IconButton} from '@mui/material';
 
-import LogoutIcon from '../assets/icons/LogoutIcon';
-import {PublicPaths} from '../roots';
+import LogoutIcon from '../../../assets/icons/LogoutIcon';
+import {PublicPaths} from '../../../enums';
 
 export function LogoutButton() {
   const navigate = useNavigate();

@@ -5,9 +5,10 @@ import {searchContactsBy} from './api/searchContactsBy';
 import Auth from './auth';
 import Env from './Env';
 import {lazyUiRenderer} from './lazyUiRenderer';
+import ContactsRepository from './mocks/ContactsRepository';
 
-export const handleSystemStart = async () => {
-  await Env.beforeStart();
+export async function handleSystemStart() {
+  Env.beforeStart();
 
   Client.initialize(lazyUiRenderer);
 
@@ -61,11 +62,21 @@ export const handleSystemStart = async () => {
     }
   });
 
-  Client.getInstance().ready();
+  Client.getInstance().onStorage((storageEvent) => {
+    if (storageEvent.key === 'user') {
+      Auth.refreshFromStorage();
+    }
+
+    if (storageEvent.key === 'contacts') {
+      ContactsRepository.getInstance().refreshFromStorage();
+    }
+  });
+
+  await Client.getInstance().ready();
 
   if (!Auth.getInstance().isAuthorized()) {
-    Client.getInstance().isNotAuthorized();
+    await Client.getInstance().isNotAuthorized();
   } else {
-    Client.getInstance().isAuthorized();
+    await Client.getInstance().isAuthorized();
   }
-};
+}

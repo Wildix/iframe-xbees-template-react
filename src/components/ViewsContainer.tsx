@@ -1,16 +1,16 @@
 import {MemoryRouter, Navigate, Route, Routes} from 'react-router-dom';
 
+import {Paths, PublicPaths} from '../enums';
 import {useAuthorizationEffect} from '../hooks/useAuthorizationEffect';
-import {Paths, PublicPaths} from '../roots';
-import {ContextInfoView} from './ContextInfoView';
-import {InputsView} from './InputsView';
-import {Login} from './Login';
-import {LoginWaiting} from './LoginWaiting';
-import {Logout} from './Logout';
-import {PopupsView} from './PopupsView';
+import {Logout} from '../modules/login/components/Logout';
+import {InputsView} from '../modules/login/input/InputsView';
+import {Login} from '../modules/login/views/Login';
+import {LoginWaiting} from '../modules/login/views/LoginWaiting';
+import {ContactInfo} from '../pages/ContactInfo';
+import {PopupsView} from '../pages/PopupsView';
+import {ToastsView} from '../pages/ToastsView';
+import {Welcome} from '../pages/Welcome';
 import ProtectedRoute from './ProtectedRoute';
-import {ToastsView} from './ToastsView';
-import {Welcome} from './Welcome';
 
 export function ViewsContainer() {
   useAuthorizationEffect();
@@ -28,7 +28,7 @@ export function ViewsContainer() {
           <Route path={Paths.OPEN_POPUP_VIEW} element={<PopupsView />} />
           <Route path={Paths.TOASTS_VIEW} element={<ToastsView />} />
           <Route path={Paths.INPUTS_VIEW} element={<InputsView />} />
-          <Route path={`${Paths.CONTACT_VIEW}/*`} element={<ContextInfoView />} />
+          <Route path={`${Paths.CONTACT_VIEW}/*`} element={<ContactInfo />} />
         </Route>
       </Routes>
     </MemoryRouter>

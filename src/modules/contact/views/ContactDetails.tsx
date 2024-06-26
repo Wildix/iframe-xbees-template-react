@@ -3,15 +3,15 @@ import {Button, Divider, Stack, Typography} from '@mui/material';
 import Client from '@wildix/xbees-connect';
 import {Contact} from '@wildix/xbees-connect/dist-types/types';
 
-import DetailsProperty from './DetailsProperty';
-import {LogoutButton} from './LogoutButton';
+import {LogoutButton} from '../../login/components/LogoutButton';
+import DetailsProperty from '../components/DetailsProperty';
 
-interface ContactViewProps {
+interface ContactDetailsProps {
   contact: Contact;
   edit: () => void;
 }
 
-export function ContactView({contact, edit}: ContactViewProps) {
+export function ContactDetails({contact, edit}: ContactDetailsProps) {
   function startCall(phoneNumber: string) {
     return Client.getInstance().startCall(phoneNumber);
   }

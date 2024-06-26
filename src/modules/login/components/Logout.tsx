@@ -3,8 +3,8 @@ import {Navigate} from 'react-router-dom';
 
 import Client from '@wildix/xbees-connect';
 
-import {useUserContext} from '../contexts/UserContext';
-import {PublicPaths} from '../roots';
+import {useUserContext} from '../../../contexts/UserContext';
+import {PublicPaths} from '../../../enums';
 
 export const Logout = () => {
   const [, setUser] = useUserContext();

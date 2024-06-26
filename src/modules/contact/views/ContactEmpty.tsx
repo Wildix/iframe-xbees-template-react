@@ -2,7 +2,7 @@ import {Button, Divider, Stack, Typography} from '@mui/material';
 
 import {ContactQuery} from '@wildix/xbees-connect/dist-types/types';
 
-import {LogoutButton} from './LogoutButton';
+import {LogoutButton} from '../../login/components/LogoutButton';
 
 interface ContactViewProps {
   query: ContactQuery;
