@@ -1,9 +1,9 @@
 import {Navigate, Outlet} from 'react-router-dom';
 
-import {Stack} from '@mui/material';
+import {Box, Stack} from '@mui/material';
 
+import {Paths} from '../app/router/enums';
 import {useUserContext} from '../contexts/UserContext';
-import {Paths} from '../enums';
 import Env from '../Env';
 
 import xBeesLogo from '/logo.png';
@@ -17,11 +17,11 @@ export function Welcome() {
 
   return (
     <Stack alignItems="center" sx={{width: '100%'}}>
-      <div>
+      <Box>
         <a href="https://github.com/wildix/" target="_blank" rel="noreferrer">
-          <img src={xBeesLogo} className="logo" alt="x-bees logo" />
+          <img src={xBeesLogo} className="logo" alt="x-bees logo" style={{width: 200, height: 'auto'}} />
         </a>
-      </div>
+      </Box>
       <Outlet />
       <caption className="read-the-docs">Click on the x-bees logo to learn more</caption>
       <caption className="read-the-docs">{`v${Env.appVersion}`}</caption>

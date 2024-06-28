@@ -4,12 +4,12 @@ import {CssBaseline, ThemeProvider} from '@mui/material';
 
 import {useThemeEffect, useViewPortEffect} from '@wildix/xbees-connect-react';
 
-import Auth from './auth';
-import {ViewsContainer} from './components/ViewsContainer';
-import {UserContext, UserContextState} from './contexts/UserContext';
+import Auth from '../auth';
+import {ViewsContainer} from '../components/ViewsContainer';
+import {UserContext, UserContextState} from '../contexts/UserContext';
 
 import './App.css';
-import './index.css';
+import '../index.css';
 
 function App() {
   const [user, setUser] = useState(Auth.getInstance().user);

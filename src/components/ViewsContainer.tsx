@@ -1,6 +1,6 @@
 import {MemoryRouter, Navigate, Route, Routes} from 'react-router-dom';
 
-import {Paths, PublicPaths} from '../enums';
+import {Paths, PublicPaths} from '../app/router/enums';
 import {useAuthorizationEffect} from '../hooks/useAuthorizationEffect';
 import {Logout} from '../modules/login/components/Logout';
 import {InputsView} from '../modules/login/input/InputsView';

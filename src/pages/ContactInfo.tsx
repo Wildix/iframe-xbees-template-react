@@ -7,9 +7,9 @@ import Client from '@wildix/xbees-connect';
 import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
 
 import {searchContactsBy} from '../api/searchContactsBy';
+import {Paths} from '../app/router/enums';
 import Loader from '../components/Loader';
 import {useUserContext} from '../contexts/UserContext';
-import {Paths} from '../enums';
 import Env from '../Env';
 import {ContactDetails} from '../modules/contact/views/ContactDetails';
 import {ContactEdit} from '../modules/contact/views/ContactEdit';

@@ -1,6 +1,6 @@
 import Client from '@wildix/xbees-connect';
 
-import {User} from '../types';
+import {User} from '../contexts/types';
 
 function getUserFromLocalStorage() {
   const userFromLocalStorage: User | null = Client.getInstance().getFromStorage('user');

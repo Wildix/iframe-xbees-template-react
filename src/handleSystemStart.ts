@@ -4,13 +4,13 @@ import {Contact} from '@wildix/xbees-connect/dist-types/types';
 import {searchContactsBy} from './api/searchContactsBy';
 import Auth from './auth';
 import Env from './Env';
-import {lazyUiRenderer} from './lazyUiRenderer';
 import ContactsRepository from './mocks/ContactsRepository';
+import {startUILazy} from './startUILazy';
 
 export async function handleSystemStart() {
   Env.beforeStart();
 
-  Client.initialize(lazyUiRenderer);
+  Client.initialize(startUILazy);
 
   Client.getInstance().onSuggestContacts(async (query, resolve, reject) => {
     if (!Auth.getInstance().isAuthorized()) {

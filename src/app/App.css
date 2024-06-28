@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'Mulish';
-  src: url('./font/Mulish.ttf');
+  src: url('assets/font/Mulish.ttf');
 }
 
 @font-face {
   font-family: 'TwemojiMozilla';
-  src: url('./font/TwemojiMozilla.ttf');
+  src: url('assets/font/TwemojiMozilla.ttf');
 }
 
 .logo {

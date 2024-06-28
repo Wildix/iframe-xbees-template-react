@@ -3,8 +3,8 @@ import {Link as RouterLink, Navigate, Outlet} from 'react-router-dom';
 import {Stack} from '@mui/material';
 import Link from '@mui/material/Link';
 
+import {Paths} from '../app/router/enums';
 import {useUserContext} from '../contexts/UserContext';
-import {Paths} from '../enums';
 
 const ProtectedRoute = () => {
   const [user] = useUserContext();
