@@ -1099,7 +1099,7 @@
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.5.6.tgz#c65b2bfce1bec346582c07724e3f8c1017a20339"
   integrity sha512-dn1l8LaMea/IjDoHNd9J52uBbInB796CDffS6VdIxvqYCPSG0V0DzHp76GpaWnlhg88uYyPbXCDIowa86ybd5A==
 
-"@typescript-eslint/eslint-plugin@^6.21.0":
+"@typescript-eslint/eslint-plugin@^6.14.0", "@typescript-eslint/eslint-plugin@^6.21.0":
   version "6.21.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-6.21.0.tgz#30830c1ca81fd5f3c2714e524c4303e0194f9cd3"
   integrity sha512-oy9+hTPCUFpngkEZUSzbf9MxI65wbKFoQYsgPdILTfbUldp5ovUuphZVe4i30emU9M/kP+T64Di0mxl7dSw3MA==
@@ -1116,7 +1116,7 @@
     semver "^7.5.4"
     ts-api-utils "^1.0.1"
 
-"@typescript-eslint/parser@^6.21.0":
+"@typescript-eslint/parser@^6.14.0", "@typescript-eslint/parser@^6.21.0":
   version "6.21.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-6.21.0.tgz#af8fcf66feee2edc86bc5d1cf45e33b0630bf35b"
   integrity sha512-tbsV1jPne5CkFQCgPBcDOt30ItF7aJoZL997JSF7MhGQqOeT3svWRYxiqlfA5RUdlHN6Fi+EI9bxqbdyAUZjYQ==
@@ -1289,13 +1289,15 @@
     loupe "^2.3.7"
     pretty-format "^29.7.0"
 
-"@wildix/eslint-config-style-guide@^1.1.21":
-  version "1.1.21"
-  resolved "https://registry.yarnpkg.com/@wildix/eslint-config-style-guide/-/eslint-config-style-guide-1.1.21.tgz#9c1a143637e886cfbd3318d431f75a653e18f79c"
-  integrity sha512-JobjdWMPF3Apln2prSO5kGZ163ndaD1FERG61h2gBGhnktFCOSNge1JWlr4uImC63CrcRDXwwuacTl8ORlyNig==
+"@wildix/eslint-config-style-guide@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@wildix/eslint-config-style-guide/-/eslint-config-style-guide-1.2.3.tgz#695463c71bb050a02fc0dad229c03bfa803cf964"
+  integrity sha512-o5z46IwUX3lRfTcaoe3cJeaVy7WixX/UBDcqD/0sFrK3LbwmzuJJvPEalcCHmctcQbcu5JEzBlIuHZvA5d7y1Q==
   dependencies:
     "@rushstack/eslint-patch" "^1.10.2"
     "@stylistic/eslint-plugin" "^1.7.2"
+    "@typescript-eslint/eslint-plugin" "^6.14.0"
+    "@typescript-eslint/parser" "^6.14.0"
     eslint-config-prettier "^9.1.0"
     eslint-plugin-import "^2.29.1"
     eslint-plugin-jsx-a11y "^6.8.0"
@@ -1310,15 +1312,15 @@
     eslint-plugin-testing-library "^6.2.2"
     eslint-plugin-unused-imports "^3.1.0"
 
-"@wildix/xbees-connect-react@^1.1.10":
-  version "1.1.10"
-  resolved "https://registry.yarnpkg.com/@wildix/xbees-connect-react/-/xbees-connect-react-1.1.10.tgz#0852304704385fe18ed84addc76302063093eaab"
-  integrity sha512-/dBAsVL8thF1VMK56/HBHXr6telv6i7/oMEG0C4wC5VJgJ0XwVoNg+4XX0CU/NuDjWQ4UO87cf9zQoCeZVI76A==
+"@wildix/xbees-connect-react@^1.2.15":
+  version "1.2.19"
+  resolved "https://registry.yarnpkg.com/@wildix/xbees-connect-react/-/xbees-connect-react-1.2.19.tgz#144340599e015932d026a97ddaf45925894d6ffc"
+  integrity sha512-hJ1/yXGbrZvVfj1gKVrlzFGibFD4Th5YNlvTXYQE0+luWx7G/Sp+AwmgzNY1WafYywGo7uOit72JPynnHoEdlA==
 
-"@wildix/xbees-connect@^1.1.21":
-  version "1.1.21"
-  resolved "https://registry.yarnpkg.com/@wildix/xbees-connect/-/xbees-connect-1.1.21.tgz#656e78627fef2caf3954e294fe4b552c6d574549"
-  integrity sha512-A4EoFMTtaNbai1cccALbfAEGkZOHMFaI9dT9eYxocBmGlwIaWKpk0Zva0GH6OdM64NQgkl+S6/LRteFXFPenZA==
+"@wildix/xbees-connect@^1.2.18":
+  version "1.2.24"
+  resolved "https://registry.yarnpkg.com/@wildix/xbees-connect/-/xbees-connect-1.2.24.tgz#32b4fbe8926a0afa9a32626d3b7670bb4a078a1c"
+  integrity sha512-VQAqpPnC8bYQ2C0MP+VkVLm14X3mACZMrhLpbyS4y3B+zlLjK9G8Buciais3jmyJ5cuyW0gAX30sJ8caYMno2w==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
