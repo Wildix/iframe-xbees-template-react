@@ -13,7 +13,6 @@ This template provides minimal setup instructions that enable iFrame integration
     - [xbees-connect Usage](#xbees-connect-usage)
     - [xbees-connect-react Installation](#xbees-connect-react-installation)
     - [xbees-connect-react Usage](#xbees-connect-react-usage)
-  - [Add Integration to the Development Playground](#add-integration-to-the-development-playground)
 
 ## Setup
 
@@ -124,45 +123,4 @@ const AppUi = () => {
     </div>
   );
 };
-```
-
-### Add Integration to the Development Playground
-
-To save additional test integrations for local testing in the browser console, use the following command:
-
-```js
-localStorage.setItem('iframeIntegrationsMock', JSON.stringify([ ...<put iFrameIntegration objects here> ]))
-```
-
-To display integrations in development mode, use the command:
-
-```js
-localStorage.setItem('showDevModeIntegrations', true)
-```
-
-To clean up, use:
-
-```js
-localStorage.removeItem('iframeIntegrationsMock')
-``` 
-
-Here's a full example:
-
-```js
-localStorage.setItem('iframeIntegrationsMock', JSON.stringify([
-    {
-        integrationId: 'test-iframeIntegrationsMock', // can be changed to any unique value
-        externalId: 'it_iframe_test',
-        service: 'iframe_integration', // this shouldn't be changed
-        data: {
-            iframeUrl: 'https://<some domain>.ngrok-free.app', // this should be changed to your iframe URL
-            title: 'Integration title', // can be changed to any name
-            usePbxToken: false, // put true if PBX token is needed for your app
-            visibleInUi: true, // put false if this integration should not be displayed in x-bees UI
-            devMode: true,
-            description: // add description of your app
-                'This integration allows you to do something',
-        },
-    },
-]))
 ```
