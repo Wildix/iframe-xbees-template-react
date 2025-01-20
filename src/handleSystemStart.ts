@@ -74,6 +74,8 @@ export async function handleSystemStart() {
 
   await Client.getInstance().ready();
 
+  void Client.getInstance().createContactIsSupported();
+
   if (!Auth.getInstance().isAuthorized()) {
     await Client.getInstance().isNotAuthorized();
   } else {

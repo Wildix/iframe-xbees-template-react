@@ -3,7 +3,7 @@ import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
 
 import {Box, Typography} from '@mui/material';
 
-import Client from '@wildix/xbees-connect';
+import Client, {StartPage} from '@wildix/xbees-connect';
 import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
 
 import {searchContactsBy} from '../api/searchContactsBy';
@@ -48,7 +48,11 @@ export function ContactInfo() {
           void Client.getInstance().contactUpdated(query, resultContact);
         }
       } finally {
-        navigate(!resultContact ? Paths.NO_MATCHES_VIEW : `${resultContact.id}`);
+        const noMatchesView =
+          Client.getInstance().getStartPage() === StartPage.CREATE_CONTACT
+            ? Paths.CREATE_CONTACT
+            : Paths.NO_MATCHES_VIEW;
+        navigate(!resultContact ? noMatchesView : `${resultContact.id}`);
       }
     }
 

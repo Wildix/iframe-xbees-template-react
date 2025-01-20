@@ -1312,15 +1312,15 @@
     eslint-plugin-testing-library "^6.2.2"
     eslint-plugin-unused-imports "^3.1.0"
 
-"@wildix/xbees-connect-react@^1.2.15":
-  version "1.2.19"
-  resolved "https://registry.yarnpkg.com/@wildix/xbees-connect-react/-/xbees-connect-react-1.2.19.tgz#144340599e015932d026a97ddaf45925894d6ffc"
-  integrity sha512-hJ1/yXGbrZvVfj1gKVrlzFGibFD4Th5YNlvTXYQE0+luWx7G/Sp+AwmgzNY1WafYywGo7uOit72JPynnHoEdlA==
+"@wildix/xbees-connect-react@^1.2.31-alpha.6":
+  version "1.2.31-alpha.6"
+  resolved "https://registry.yarnpkg.com/@wildix/xbees-connect-react/-/xbees-connect-react-1.2.31-alpha.6.tgz#09aa56b3b2fd68dd638dad8f2f2be545c0e329ca"
+  integrity sha512-eK6/Kc7buSMIHuKceWry8QOveOfEStnK6EYNYPwBMzHDuVTn+pL0JzhBr2OOOOXea118O+vnTCqqXYPPda9ETg==
 
-"@wildix/xbees-connect@^1.2.18":
-  version "1.2.24"
-  resolved "https://registry.yarnpkg.com/@wildix/xbees-connect/-/xbees-connect-1.2.24.tgz#32b4fbe8926a0afa9a32626d3b7670bb4a078a1c"
-  integrity sha512-VQAqpPnC8bYQ2C0MP+VkVLm14X3mACZMrhLpbyS4y3B+zlLjK9G8Buciais3jmyJ5cuyW0gAX30sJ8caYMno2w==
+"@wildix/xbees-connect@1.2.34":
+  version "1.2.34"
+  resolved "https://registry.yarnpkg.com/@wildix/xbees-connect/-/xbees-connect-1.2.34.tgz#426cce3613f8dfa3364521a4402ca873336eeae8"
+  integrity sha512-79BLO39yferKWZYZHDDILA4yvq4OMXy+6yyx3c3zqvdwLLg7jf1ZZxql/5vhKnPVYfe7bcj2K9JJEf75fIhfjA==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
