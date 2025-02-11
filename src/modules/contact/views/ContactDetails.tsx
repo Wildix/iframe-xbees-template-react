@@ -19,10 +19,13 @@ export function ContactDetails({contact, edit}: ContactDetailsProps) {
   return (
     <Stack>
       <LogoutButton />
-      <DetailsProperty title="Name" value={contact.name} />
-      {contact.email ? <DetailsProperty title="email" value={contact.email} variant="email" /> : null}
+      <DetailsProperty data-qa="templateName" title="Name" value={contact.name} />
+      {contact.email ? (
+        <DetailsProperty data-qa="templateEmail" title="email" value={contact.email} variant="email" />
+      ) : null}
       {contact.phone ? (
         <DetailsProperty
+          data-qa="templatePhone"
           title="phone"
           value={contact.phone}
           variant="phone"
@@ -30,7 +33,9 @@ export function ContactDetails({contact, edit}: ContactDetailsProps) {
         />
       ) : null}
       <br />
-      <Button onClick={edit}>Edit contact</Button>
+      <Button onClick={edit} data-qa="templateEditContactButton">
+        Edit contact
+      </Button>
       <br />
       <Divider />
       <br />

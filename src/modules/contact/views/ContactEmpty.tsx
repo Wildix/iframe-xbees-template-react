@@ -16,7 +16,9 @@ export function ContactEmpty({query, create}: ContactViewProps) {
       <Typography variant="subtitle1">There is no contact for</Typography>
       {query.email ? <Typography variant="body1">{query.email}</Typography> : null}
       {query.phone ? <Typography variant="body1">{query.phone}</Typography> : null}
-      <Button onClick={create}>Create contact</Button>
+      <Button onClick={create} data-qa="templateCreateContactButton">
+        Create contact
+      </Button>
       <br />
       <Divider />
       <br />

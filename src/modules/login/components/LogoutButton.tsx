@@ -10,7 +10,7 @@ export function LogoutButton() {
 
   return (
     <Box sx={{position: 'absolute', top: 10, right: 10}}>
-      <IconButton onClick={() => navigate(PublicPaths.LOGOUT)}>
+      <IconButton onClick={() => navigate(PublicPaths.LOGOUT)} data-qa="templateLogoutIcon">
         <LogoutIcon color="black" />
       </IconButton>
     </Box>

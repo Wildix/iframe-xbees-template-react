@@ -58,7 +58,12 @@ export function ContactEdit({query, contact, onCreate}: ContactEditProps) {
             defaultValue={contact?.phone ?? query.phone}
           />
           <div className="buttons">
-            <Button type="submit" className="app-button" size="small" variant="contained">
+            <Button
+              type="submit"
+              className="app-button"
+              size="small"
+              variant="contained"
+              data-qa="templateCreateContactConfirmButton">
               Create contact
             </Button>
           </div>
