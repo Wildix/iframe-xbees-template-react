@@ -62,6 +62,51 @@ export async function handleSystemStart() {
     }
   });
 
+  Client.getInstance().onLookupAndMatchBatchContacts(async (queries, returnResults) => {
+    if (!Auth.getInstance().isAuthorized()) {
+      void Client.getInstance()?.isNotAuthorized?.();
+      throw 'no authorized';
+    }
+
+    if (!queries || queries.length === 0) {
+      throw 'no query';
+    }
+
+    try {
+      const resultsMap = new Map();
+
+      const searchPromises = queries.map(async (query) => {
+        const contacts = await searchContactsBy(query);
+
+        if (contacts && contacts.length > 0) {
+          const contact = contacts[0]!;
+
+          return {
+            query,
+            contact: {
+              id: contact.id,
+              name: contact.name,
+              email: contact.email,
+              phone: contact.phone,
+            } as Contact,
+          };
+        }
+
+        return {query, contact: null};
+      });
+
+      const results = await Promise.all(searchPromises);
+
+      results.forEach(({query, contact}) => {
+        resultsMap.set(query, contact);
+      });
+
+      returnResults(resultsMap);
+    } catch (error) {
+      throw `${error}`;
+    }
+  });
+
   Client.getInstance().onStorage((storageEvent) => {
     if (storageEvent.key === 'user') {
       Auth.refreshFromStorage();
