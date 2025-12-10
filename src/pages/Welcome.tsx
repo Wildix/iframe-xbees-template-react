@@ -16,7 +16,7 @@ export function Welcome() {
   if (user) {
     console.log('🚀 ~ :17 ~ Welcome ~ Client.getInstance().isFullsize():', Client.getInstance().isFullsize());
 
-    return <Navigate to={Client.getInstance().isFullsize() ? Paths.TAB_VIEW : Paths.NO_MATCHES_VIEW} replace />;
+    return <Navigate to={Client.getInstance().isFullsize() ? Paths.TAB_VIEW : Paths.CONTACT_VIEW} replace />;
   }
 
   return (
