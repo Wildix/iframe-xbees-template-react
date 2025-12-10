@@ -12,4 +12,5 @@ export enum Paths {
   TOASTS_VIEW = 'toasts-view',
   INPUTS_VIEW = 'inputs-view',
   OPEN_POPUP_VIEW = 'open-popup-view',
+  TAB_VIEW = 'tab-view',
 }

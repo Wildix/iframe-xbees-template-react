@@ -8,6 +8,7 @@ import {Login} from '../modules/login/views/Login';
 import {LoginWaiting} from '../modules/login/views/LoginWaiting';
 import {ContactInfo} from '../pages/ContactInfo';
 import {PopupsView} from '../pages/PopupsView';
+import {TabView} from '../pages/TabView';
 import {ToastsView} from '../pages/ToastsView';
 import {Welcome} from '../pages/Welcome';
 import ProtectedRoute from './ProtectedRoute';
@@ -28,6 +29,7 @@ export function ViewsContainer() {
           <Route path={Paths.OPEN_POPUP_VIEW} element={<PopupsView />} />
           <Route path={Paths.TOASTS_VIEW} element={<ToastsView />} />
           <Route path={Paths.INPUTS_VIEW} element={<InputsView />} />
+          <Route path={Paths.TAB_VIEW} element={<TabView />} />
           <Route path={`${Paths.CONTACT_VIEW}/*`} element={<ContactInfo />} />
         </Route>
       </Routes>
