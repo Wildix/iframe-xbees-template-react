@@ -1312,7 +1312,7 @@
     eslint-plugin-testing-library "^6.2.2"
     eslint-plugin-unused-imports "^3.1.0"
 
-"@wildix/xbees-connect-react@^1.2.43":
+"@wildix/xbees-connect-react@1.2.43":
   version "1.2.43"
   resolved "https://registry.yarnpkg.com/@wildix/xbees-connect-react/-/xbees-connect-react-1.2.43.tgz#b4a8a48e0294db78c63c21c50363b63d1c6bd5c6"
   integrity sha512-18UtQ6nCILQNPF9hNG+Ohb3vBy8L170Rs2cI7Chp7O1Rn60sCPraURdrLgoaSLgGcb5sk5vlSuxstCADky0jtQ==

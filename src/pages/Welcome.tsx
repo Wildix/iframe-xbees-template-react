@@ -1,6 +1,6 @@
 import {Navigate, Outlet} from 'react-router-dom';
 
-import {Box, Stack} from '@mui/material';
+import {Box, Stack, Typography} from '@mui/material';
 
 import Client from '@wildix/xbees-connect';
 
@@ -25,8 +25,12 @@ export function Welcome() {
         </a>
       </Box>
       <Outlet />
-      <caption className="read-the-docs">Click on the x-bees logo to learn more</caption>
-      <caption className="read-the-docs">{`v${Env.appVersion}`}</caption>
+      <Typography variant="body2" className="read-the-docs">
+        Click on the x-bees logo to learn more
+      </Typography>
+      <Typography variant="body2" className="read-the-docs">
+        {`v${Env.appVersion}`}
+      </Typography>
     </Stack>
   );
 }

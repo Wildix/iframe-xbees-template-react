@@ -4,6 +4,7 @@ import {Contact} from '@wildix/xbees-connect/dist-types/types';
 import {searchContactsBy} from './api/searchContactsBy';
 import Auth from './auth';
 import Env from './Env';
+import {onLogout} from './helpers/onLogout';
 import ContactsRepository from './mocks/ContactsRepository';
 import {startUILazy} from './startUILazy';
 
@@ -110,11 +111,21 @@ export async function handleSystemStart() {
   Client.getInstance().onStorage((storageEvent) => {
     if (storageEvent.key === 'user') {
       Auth.refreshFromStorage();
+
+      if (Auth.getInstance().user) {
+        void Client.getInstance().isAuthorized();
+      } else {
+        void Client.getInstance().isNotAuthorized();
+      }
     }
 
     if (storageEvent.key === 'contacts') {
       ContactsRepository.getInstance().refreshFromStorage();
     }
+  });
+
+  Client.getInstance().onLogout(() => {
+    onLogout();
   });
 
   await Client.getInstance().ready();
