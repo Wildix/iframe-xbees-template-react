@@ -10,11 +10,11 @@
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.{ts,tsx}\" && tsc --noEmit",
     "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix --quiet",
-    "version:patch": "yarn version --no-git-tag-version  --preid beta --patch",
-    "version:minor": "yarn version --no-git-tag-version  --preid beta --minor",
-    "version:prepatch": "yarn version --no-git-tag-version  --preid beta --prepatch",
-    "version:preminor": "yarn version --no-git-tag-version  --preid beta --preminor",
-    "version:pre": "yarn version --no-git-tag-version  --preid alpha --prerelease"
+    "version:patch": "yarn version patch",
+    "version:minor": "yarn version minor",
+    "version:prepatch": "yarn version prepatch",
+    "version:preminor": "yarn version preminor",
+    "version:pre": "yarn version prerelease"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -42,5 +42,6 @@
     "vite": "^5.2.10",
     "vite-plugin-mkcert": "^1.17.5",
     "vitest": "^1.5.3"
-  }
+  },
+  "packageManager": "yarn@4.12.0"
 }
