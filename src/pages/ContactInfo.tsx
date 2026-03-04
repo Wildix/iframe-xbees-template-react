@@ -70,6 +70,7 @@ export function ContactInfo() {
   return (
     <>
       <Typography variant="subtitle1" fontWeight="bold">{`welcome v${Env.appVersion}`}</Typography>
+      <Typography variant="subtitle1" fontWeight="bold">{`product: ${Client.getInstance().getProduct()}`}</Typography>
       <Typography variant="body2">{`${user!.email}`}</Typography>
       <Box sx={{mt: 1}}>
         <Typography variant="subtitle2" fontWeight="bold">

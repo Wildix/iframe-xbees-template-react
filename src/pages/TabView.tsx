@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 
 import {Box, Divider, Stack, Typography} from '@mui/material';
 
+import Client from '@wildix/xbees-connect';
 import {Contact} from '@wildix/xbees-connect/dist-types/types';
 
 import {searchContactsBy} from '../api/searchContactsBy';
@@ -35,6 +36,7 @@ export function TabView() {
         Template - Tab View
       </Typography>
       <Typography variant="subtitle1" fontWeight="bold">{`welcome v${Env.appVersion}`}</Typography>
+      <Typography variant="subtitle1" fontWeight="bold">{`product: ${Client.getInstance().getProduct()}`}</Typography>
 
       {isLoading ? (
         <Loader />
