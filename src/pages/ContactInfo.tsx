@@ -1,10 +1,10 @@
 import {useEffect, useState} from 'react';
 import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
 
-import {Box, Typography} from '@mui/material';
-
 import Client, {StartPage} from '@wildix/xbees-connect';
 import {Contact, ContactQuery} from '@wildix/xbees-connect/dist-types/types';
+
+import {Box, Typography} from '@mui/material';
 
 import {searchContactsBy} from '../api/searchContactsBy';
 import {Paths} from '../app/router/enums';
@@ -35,11 +35,17 @@ export function ContactInfo() {
   }, []);
 
   useEffect(() => {
+    let active = true;
+
     async function getContextData(query: ContactQuery) {
       let resultContact: Contact | null = null;
 
       try {
         const results = await searchContactsBy(query);
+        if (!active) {
+          return;
+        }
+
         resultContact = results?.[0] ?? null;
         setContact(resultContact);
         setIsUpdated(false);
@@ -48,22 +54,28 @@ export function ContactInfo() {
           void Client.getInstance().contactUpdated(query, resultContact);
         }
       } finally {
-        const noMatchesView =
-          Client.getInstance().getStartPage() === StartPage.CREATE_CONTACT
-            ? Paths.CREATE_CONTACT
-            : Paths.NO_MATCHES_VIEW;
-        navigate(!resultContact ? noMatchesView : `${resultContact.id}`);
+        if (active) {
+          const noMatchesView =
+            Client.getInstance().getStartPage() === StartPage.CREATE_CONTACT
+              ? Paths.CREATE_CONTACT
+              : Paths.NO_MATCHES_VIEW;
+          navigate(`/${Paths.CONTACT_VIEW}/${!resultContact ? noMatchesView : resultContact.id}`);
+        }
       }
     }
 
     if (context) {
       void getContextData(context);
     }
+
+    return () => {
+      active = false;
+    };
   }, [context, isUpdated]);
 
   useEffect(() => {
     if (contact) {
-      navigate(contact.id);
+      navigate(`/${Paths.CONTACT_VIEW}/${contact.id}`);
     }
   }, [contact]);
 
@@ -79,7 +91,19 @@ export function ContactInfo() {
         <Routes>
           <Route index element={<Navigate to="loading" replace />} />
           <Route path=":id">
-            <Route index element={<ContactDetails contact={contact!} edit={() => navigate(Paths.CREATE_CONTACT)} />} />
+            <Route
+              index
+              element={
+                contact ? (
+                  <ContactDetails
+                    contact={contact}
+                    edit={() => navigate(`/${Paths.CONTACT_VIEW}/${Paths.CREATE_CONTACT}`)}
+                  />
+                ) : (
+                  <Loader />
+                )
+              }
+            />
           </Route>
           <Route
             path={Paths.CREATE_CONTACT}
@@ -89,7 +113,7 @@ export function ContactInfo() {
                 contact={contact}
                 onCreate={() => {
                   setContext({...context!});
-                  navigate('loading');
+                  navigate(`/${Paths.CONTACT_VIEW}/loading`);
                   setIsUpdated(true);
                 }}
               />
@@ -97,7 +121,12 @@ export function ContactInfo() {
           />
           <Route
             path={Paths.NO_MATCHES_VIEW}
-            element={<ContactEmpty query={context!} create={() => navigate(Paths.CREATE_CONTACT)} />}
+            element={
+              <ContactEmpty
+                query={context!}
+                create={() => navigate(`/${Paths.CONTACT_VIEW}/${Paths.CREATE_CONTACT}`)}
+              />
+            }
           />
           <Route path="loading" element={<Loader />} />
         </Routes>
