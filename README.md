@@ -4,6 +4,7 @@ This template provides minimal setup instructions that enable iFrame integration
 
 ## Table of Contents
 
+- [Prerequisites](#prerequisites)
 - [Setup](#setup)
 - [Development](#development)
   - [Quick Start](#quick-start)
@@ -14,13 +15,17 @@ This template provides minimal setup instructions that enable iFrame integration
     - [xbees-connect-react Installation](#xbees-connect-react-installation)
     - [xbees-connect-react Usage](#xbees-connect-react-usage)
 
+## Prerequisites
+
+The template uses pnpm. Run `corepack enable` once. On Node 25 or newer, first run `npm i -g corepack`.
+
 ## Setup
 
 To set up a demo:
 
 1. **Download the template project**
-2. **Install dependencies:** `yarn install`
-3. **Build the project:** `yarn build`
+2. **Install dependencies:** `pnpm install`
+3. **Build the project:** `pnpm build`
 4. **Deploy:** Deploy the content of the _**./build**_ folder to the frontend environment.
 5. **Configure x-bees:** Use the URL of the integration application from step 4 when setting up a new iFrame integration in `WMS Settings -> PBX -> Integrations -> x-bees -> iFrame integrations -> Add integration -> iFrame URL field`
 
@@ -29,10 +34,10 @@ To set up a demo:
 ### Quick Start
 
 1. **Download a copy of the template project**
-2. **Install dependencies:** `yarn install`
+2. **Install dependencies:** `pnpm install`
 3. **Run the template:**
-   - For local development without ngrok: `sudo yarn dev --host local.integrations.x-bees.com --port=443` change host <local.integrations.x-bees.com> or port
-   - For testing with ngrok tunneling: `yarn dev`
+   - For local development without ngrok: `sudo env "PATH=$PATH" pnpm dev --host local.integrations.x-bees.com --port=443` change host <local.integrations.x-bees.com> or port
+   - For testing with ngrok tunneling: `pnpm dev`
 4. **Implement components and integration logic:** Customize the template for your integration
 
 
@@ -44,7 +49,7 @@ You have two options for integrating your local development environment with x-b
 
 make sure mkcert is added
 ```bash
-yarn add vite-plugin-mkcert -D
+pnpm add -D vite-plugin-mkcert
 ```
 Configure [vite.config.ts](vite.config.ts)
 ```js
@@ -65,7 +70,7 @@ add row with
 ```  
 Run the local development server with domain mapping:
 ```bash
-sudo yarn dev --host local.integrations.x-bees.com --port=443
+sudo env "PATH=$PATH" pnpm dev --host local.integrations.x-bees.com --port=443
 ```
 In x-bees, configure a new iFrame integration using the URL: https://local.integrations.x-bees.com
 
@@ -83,7 +88,7 @@ Ensure that you are using the latest version of the [xbees-connect library](http
 Install the package in your project directory with:
 
 ```bash
-yarn add @wildix/xbees-connect
+pnpm add @wildix/xbees-connect
 ```
 
 #### xbees-connect Usage
@@ -101,7 +106,7 @@ console.log(xBeesClient.version());
 Install the package in your project directory with:
 
 ```bash
-yarn add @wildix/xbees-connect-react
+pnpm add @wildix/xbees-connect-react
 ```
 
 #### xbees-connect-react Usage

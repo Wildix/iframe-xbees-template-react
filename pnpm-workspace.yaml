@@ -1,0 +1,4 @@
+autoInstallPeers: false
+allowBuilds:
+  '@swc/core': true
+  esbuild: true

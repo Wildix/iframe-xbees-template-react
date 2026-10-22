@@ -12,11 +12,11 @@
     "lint:fix": "biome check --write src",
     "lint:diff": "bash ../tools/lint/lint-diff.sh",
     "lint:diff:fix": "bash ../tools/lint/lint-diff.sh --write",
-    "version:patch": "yarn version patch",
-    "version:minor": "yarn version minor",
-    "version:prepatch": "yarn version prepatch",
-    "version:preminor": "yarn version preminor",
-    "version:pre": "yarn version prerelease"
+    "version:patch": "pnpm version patch --no-git-tag-version",
+    "version:minor": "pnpm version minor --no-git-tag-version",
+    "version:prepatch": "pnpm version prepatch --no-git-tag-version",
+    "version:preminor": "pnpm version preminor --no-git-tag-version",
+    "version:pre": "pnpm version prerelease --no-git-tag-version"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -41,5 +41,8 @@
     "vite-plugin-mkcert": "^1.17.5",
     "vitest": "^1.5.3"
   },
-  "packageManager": "yarn@4.12.0"
+  "packageManager": "pnpm@10.34.5+sha512.a4ee05f2f73658255bd6a89859c065a45c28a57daefae2c893a168ee2b73168c37b91e83e57ea67654ad03f03031746430e8bce38e362e042605fb8abc80192e",
+  "engines": {
+    "pnpm": ">=10.26.0 <11"
+  }
 }
